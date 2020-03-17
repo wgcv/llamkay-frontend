@@ -1,0 +1,60 @@
+body
+    font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif
+    background-color: #f5f5f5
+    
+.white-body .head-text-wrapper 
+    display: flex
+    align-self: center
+    width: 50%
+    margin-left: auto
+    margin-right: auto
+    flex-direction: column
+    align-items: center
+    color: #fff
+
+.white-body .head-text-wrapper .subtitle, .white-body .head-text-wrapper .title 
+    color: #fff!important
+
+.white-body .head-text-wrapper .subtitle.main-title.is-1, .white-body .head-text-wrapper .title.main-title.is-1
+    font-size: 3.5rem
+    font-weight: 700!important
+    margin-top: 3rem
+
+.white-body .head-text-wrapper .subtitle 
+    width: 66%
+    margin-top: -.5rem
+
+.hero-body
+    padding: 2rem 1.5rem 0 1.5rem
+
+.navbar-menu 
+    flex-grow: 1 !important
+    flex-shrink: 0 !important
+
+.banner
+    padding: 0
+    margin-botton: 3rem
+.level-item 
+    align-items: center
+    display: inline-block
+    text-align: center
+    justify-content: center
+.footer
+    background-color: #fafafa
+    padding: 3rem 1.5rem 0.5rem
+
+@media screen and (max-width: 1023px)
+    .navbar-menu.is-active 
+        POSITION: absolute
+        RIGHT: 0
+        LEFT: 0
+    .navbar-start
+        display: block !important
+
+@media screen and (MIN-width: 1024px)
+    .navbar-start
+        display: none !important
+
+@media screen and (max-width: 768px)
+    .white-body .head-text-wrapper
+        width: 95%

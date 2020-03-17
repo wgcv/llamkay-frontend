@@ -1,0 +1,77 @@
+<app-menubar></app-menubar>
+
+<div class="container">
+        <div class="columns is-desktop">
+        <div class="column is-8 is-offset-2">
+            <div class="notification">
+                <h2 class="has-text-centered title">Añadir un nuevo empleado</h2>
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <input class="input" type="text" #txtFirstname  (blur)="bluertxtFirstname(txtFirstname.value)" placeholder="Nombre">
+                        <span class="icon is-small is-left">
+                            <i class="far fa-user-circle"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger" #errorFirstname style="display: none;">
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <input class="input" type="text" #txtLastname  (blur)="bluertxtLastname(txtLastname.value)" placeholder="Apellido">
+                        <span class="icon is-small is-left">
+                            <i class="far fa-id-card"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger" #errorLastname style="display: none;">
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <input class="input" type="text" #txtMail  (blur)="bluertxtMail(txtMail.value)" placeholder="Correo electrónico">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger" #errorMail style="display: none;">
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input class="input" #txtPassword type="password" (blur)="bluertxtPassword(txtPassword.value)" placeholder="Contraseña" id="txtPassword">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger" #errorPassword style="display: none;">
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input class="input" #txtDepartment type="text"  placeholder="Departamento" id="txtDepartment">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-users"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger" #errorCompany style="display: none;">
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input class="input" #txtPosition type="text" placeholder="Posición" id="txtPosition">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-tag"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger" #errorCompany style="display: none;">
+                    </p>
+                </div>
+                <div class="field is-grouped is-grouped-centered">
+                    <button class="button is-primary" #btnLogin (click)="submitRegister()">
+                        Ingresar
+                    </button>
+                </div>
+                <div id="msgError"></div>
+            </div>
+        </div>
+    </div>
+</div>

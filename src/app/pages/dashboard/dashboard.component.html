@@ -1,0 +1,29 @@
+<app-menubar></app-menubar>
+<div class="container">
+    <div class="columns is-desktop">
+        <div (click)="goAddUser()" class="column has-text-centered bg-primary menu-item">
+            <p><span class="icon is-small is-left">
+                    <i class="fas fa-plus fa-3x"></i>
+                </span></p>
+            Añadir empleado
+        </div>
+        <div (click)="goUserList()" class="column has-text-centered bg-primary menu-item">
+            <p><span class="icon is-small is-left">
+                    <i class="fas fa-list-alt fa-3x"></i>
+                </span></p>Lista de usuarios
+        </div>
+    </div>
+    <div class="columns is-desktop">
+        <div (click)="goTaskList()" class="column has-text-centered bg-primary menu-item">
+            <p><span class="icon is-small is-left">
+                    <i class="fab fa-trello fa-3x"></i>
+                </span></p>Tareas
+        </div>
+        <div (click)="goReports()" class="column has-text-centered bg-primary menu-item">
+            <p><span class="icon is-small is-left">
+                    <i class="fas fa-chart-line fa-3x"></i>
+                </span></p>Reportes
+        </div>
+    </div>
+</div>
+
