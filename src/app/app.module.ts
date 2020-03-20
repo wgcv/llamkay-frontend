@@ -21,6 +21,7 @@ import { UsersService } from './services/users/users.service';
 import { AuthGuard } from './guards/auth.guards';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarComponent } from './components/menubar/menubar.component';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 
 function jwtOptionsFactory(usersService: UsersService) {
   return {
@@ -40,7 +41,8 @@ function jwtOptionsFactory(usersService: UsersService) {
     UserAddComponent,
     UserListComponent,
     SigninComponent,
-    MenubarComponent
+    MenubarComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

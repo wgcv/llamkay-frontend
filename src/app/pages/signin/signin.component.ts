@@ -142,7 +142,6 @@ export class SigninComponent implements OnInit {
     }
       this.user = this.userService.user(null, this.txtMail.nativeElement.value, this.txtFirstname.nativeElement.value, this.txtLastname.nativeElement.value, this.txtPassword.nativeElement.value,null, null, null, null, null);
       this.company = {"_id":null, "logo":null, "name": this.txtCompany.nativeElement.value}
-      console.log(JSON.stringify({"user":this.user, "company": this.company}))
       this.userService.registerNewUser({"user":this.user, "company": this.company}).subscribe(data => {
         this.snackBar.open("Se registro con éxito", 'Cerrar', {
           duration: 5000,
@@ -158,7 +157,7 @@ export class SigninComponent implements OnInit {
           duration: 5000,
         });
       });
-
+      return false;
   }
 
 }

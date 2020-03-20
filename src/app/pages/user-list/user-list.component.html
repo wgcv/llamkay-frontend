@@ -1,1 +1,40 @@
-<p>user-list works!</p>
+<app-menubar></app-menubar>
+<div class="container">
+    <div class="section searchbar">
+            <h1 class="title has-text-centered">Lista de empleados</h1>
+
+            <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="text" placeholder="Buscar"  (blur)="onSearch($event)" (input)="onSearch($event)">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-search"></i>
+                  </span>
+                </p>
+              </div>
+    </div>
+    <div class="table-responsive">
+    <table class="table is-hoverable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo electrónico</th>
+                <th>Departamento</th>
+                <th>Posición</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList" >
+                <td (click)="onClickUser(user._id)">{{user.firstname}}</td>
+                <td (click)="onClickUser(user._id)">{{user.lastname}}</td>
+                <td (click)="onClickUser(user._id)">{{user.email}}</td>
+                <td (click)="onClickUser(user._id)">{{user.department}}</td>
+                <td (click)="onClickUser(user._id)">{{user.position}}</td>
+                <td>Acciones</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+</div>

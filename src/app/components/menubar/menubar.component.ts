@@ -17,9 +17,9 @@ export class MenubarComponent implements OnInit {
   }
   userClick(){
     this.userExpander = !this.userExpander
-    this.userService.logout()
   }
   logout(){
+    this.userService.logout();
     this.router.navigateByUrl('/');
 
   }

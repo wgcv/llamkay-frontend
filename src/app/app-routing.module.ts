@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserAddComponent } from './pages/user-add/user-add.component';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { SigninComponent } from './pages/signin/signin.component';
@@ -40,8 +41,14 @@ const routes: Routes = [
     data: { title: 'Agregar nuevo usuario' }
   },
   {
-    path: 'user/list',
+    path: 'users',
     component: UserListComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Lista de usuario' }
+  },
+  {
+    path: 'user/:id',
+    component: UserDetailComponent,
     canActivate: [AuthGuard],
     data: { title: 'Lista de usuario' }
   },

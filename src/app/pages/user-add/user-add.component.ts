@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { User } from '../../interfaces/user.interface';
 import { Company } from '../../interfaces/company.interface';
 
-import { Auth } from '../../interfaces/auth.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -116,18 +115,20 @@ export class UserAddComponent implements OnInit {
 
   submitRegister(){
     if ((this.txtMail.nativeElement.value == "") || (!this.validateEmail(this.txtMail.nativeElement.value))) {
-      this.snackBar.open("Todos los campos son requeridos", 'Corregir', {
+      this.snackBar.open("Revisar los campos son requeridos", 'Corregir', {
         duration: 5000,
       });
-       return true
+      return false;
+
        ;}
     if ((this.txtFirstname.nativeElement.value == "") || (this.txtLastname.nativeElement.value == "")) { 
-      this.snackBar.open("Todos los campos son requeridos", 'Corregir', {
+      this.snackBar.open("Revisar los campos son requeridos", 'Corregir', {
         duration: 5000,
-      });return true;
+      });
+      return false;
+
     }
       this.user = this.userService.user(null, this.txtMail.nativeElement.value, this.txtFirstname.nativeElement.value, this.txtLastname.nativeElement.value, this.txtPassword.nativeElement.value, null, this.txtDepartment.nativeElement.value, this.txtPosition.nativeElement.value, null, null);
-      console.log(this.user)
       this.userService.registerUser(this.user).subscribe(data => {
         this.snackBar.open("Se añadió empleado", 'Cerrar', {
           duration: 5000,
@@ -143,7 +144,7 @@ export class UserAddComponent implements OnInit {
           duration: 5000,
         });
       });
-
+      return false;
   }
 
 }

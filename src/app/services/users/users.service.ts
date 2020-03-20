@@ -2,6 +2,8 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Auth } from '../../interfaces/auth.interface';
 import { User } from '../../interfaces/user.interface';
+import { Pagination } from '../../interfaces/pagination.interface';
+
 import { CookieService } from 'ngx-cookie-service';
 import { ReplaySubject } from 'rxjs';
 import { Router } from '@angular/router';
@@ -28,15 +30,27 @@ export class UsersService {
       .pipe(map(res => res));
   }
   registerNewUser(userAndComapny: any) {
-    return this.http.post<Auth>(Host.url + '/new/users/', userAndComapny)
+    return this.http.post<User>(Host.url + '/new/users/', userAndComapny)
       .pipe(map(res => res));
   }
 
   registerUser(user: User) {
-    return this.http.post<Auth>(Host.url + '/users/', user)
+    return this.http.post<User>(Host.url + '/users/', user)
+      .pipe(map(res => res));
+  }
+  getUsers() {
+    return this.http.get<Pagination>(Host.url + '/users/')
       .pipe(map(res => res));
   }
 
+  getUser(id) {
+    return this.http.get<User>(Host.url + '/users/'+id)
+      .pipe(map(res => res));
+  }
+  searchUsers(query) {
+    return this.http.get<Pagination>(Host.url + '/users?search=' + query)
+      .pipe(map(res => res));
+  }
 
   getAccessToken() {
     if(this.authToken){
@@ -100,12 +114,6 @@ export class UsersService {
     this.logout();
     return false;
   }
-
-  listUser() {
-    return this.http.get<Auth>(Host.url + '/users/')
-      .pipe(map(res => res));
-  }
-
 
   user(_id: number, email: string, firstname: string, lastname: string, password: string, company: string, department: string, position: string, isAdmin: boolean, permissions: any) {
     const user: User = {_id, email, firstname, lastname, password, company, department, position, isAdmin, permissions};

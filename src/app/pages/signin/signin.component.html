@@ -17,6 +17,7 @@
                 </g>
                 </svg>
             </div>
+            <form (submit)="submitRegister()" action="#">
 
             <div class="notification">
                 <h2 class="has-text-centered title">Registrate</h2>
@@ -71,12 +72,13 @@
                     </p>
                 </div>
                 <div class="field is-grouped is-grouped-centered">
-                    <button class="button is-primary" #btnLogin (click)="submitRegister()">
+                    <button class="button is-primary" type="submit" #btnLogin>
                         Ingresar
                     </button>
                 </div>
                 <div id="msgError"></div>
             </div>
+            </form>
         </div>
     </div>
 </div>

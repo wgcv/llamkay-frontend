@@ -1,0 +1,83 @@
+<app-menubar></app-menubar>
+<div class="container">
+    <h1 class="title has-text-centered"> Detalle de empleado</h1>
+    <div class="card box">
+        <div class="card-content">
+
+        <h3 class="title">
+            {{user.firstname}} {{user.lastname}}
+
+        </h3>
+        <div class="columns">
+            <div class="column">
+                <strong>Correo electrónico</strong>:  {{user.email}}
+            </div>
+            <div class="column">
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+                <strong>Departamento</strong>:  {{user.department}}
+            </div>
+            <div class="column">
+                <strong>Posición</strong>:  {{user.position}}
+
+            </div>
+          </div>
+          </div>
+    </div>
+
+    <nav class="level is-mobile" style="margin:3em 2em">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Hoy</p>
+            <p class="title">4h30m</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Semana</p>
+            <p class="title">40h30m</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Tareas</p>
+            <p class="title">10</p>
+          </div>
+        </div>
+      </nav>
+    <div class="card">
+        <header class="card-header">
+          <h2 class="title card-header-title">Tareas</h2>
+
+        </header>
+        <div class="card-content">
+            <div class="table-responsive">
+                <table class="table is-hoverable is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tiempo</th>
+                            <th>Creada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Prueba</td>
+                            <td>1h40m</td>
+                            <td>1 de junio del 2020</td>
+
+                        </tr>
+            
+                    </tbody>
+                </table>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <a href="#" class="card-footer-item is-active">Activas</a>
+        <a href="#" class="card-footer-item">Archivadas</a>
+      </footer>
+    </div>
+    </div>
+    

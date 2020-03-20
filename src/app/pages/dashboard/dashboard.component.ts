@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/user/add');
   }
   goUserList(){
-    this.router.navigateByUrl('/user/add');
+    this.router.navigateByUrl('/users');
   }
   goTaskList(){
     this.snackBar.open("Estamos implementado nuevas características", 'Próximamente', {

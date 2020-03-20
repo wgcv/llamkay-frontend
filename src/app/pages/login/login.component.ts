@@ -75,12 +75,12 @@ export class LoginComponent implements OnInit {
           this.snackBar.open("El portal solo es para administradores, puede descargar la aplicación en nuestra página", 'No autorizado', {
             duration: 5000,
           });
+          
         }
        
       }, (error: any) => {
         let errorText = '';
         for (const propError of Object.keys(error.error.errors)) {
-          console.log(error.error.errors[propError] )
                 if (error.error.errors[propError]  === 'Invalid e-mail or password') {
                 errorText += 'Error: ' + 'Usuario o contraseña incorrecto.';
                 } else {
@@ -98,5 +98,7 @@ export class LoginComponent implements OnInit {
         duration: 5000,
       });
     }
+    return false;
+
   }
 }

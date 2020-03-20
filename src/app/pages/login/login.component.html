@@ -25,6 +25,7 @@ min-height: 100vh;">
 
             <div class="notification">
                 <h2 class="has-text-centered title">Ingresar al sistema</h2>
+                    <form (submit)="submitLogin()" action="#">
 
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
@@ -48,11 +49,12 @@ min-height: 100vh;">
                 </div>
 
                 <div class="field is-grouped is-grouped-centered">
-                    <button class="button is-primary" #btnLogin (click)="submitLogin()">
+                    <button class="button is-primary" type="submit" #btnLogin  (click)="submitLogin()">
                         Ingresar
                     </button>
                 </div>
                 <div id="msgError"></div>
+                </form>
             </div>
         </div>
     </div>
