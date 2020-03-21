@@ -4,10 +4,22 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod    ",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "build": {
+    "configurations": {
+      "production": {
+        "fileReplacements": [
+          {
+            "replace": "src/app/config/host.ts",
+            "with": "src/app/config/host.prod.ts"
+          }
+        ]
+      }
+    }
   },
   "private": true,
   "dependencies": {
