@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { Host } from './config/host';
 import { JWT_OPTIONS, JwtInterceptor, JwtModule } from '@auth0/angular-jwt';
@@ -24,6 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarComponent } from './components/menubar/menubar.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { DownloadsComponent } from './pages/downloads/downloads.component';
+import { TasksService } from './services/tasks/tasks.service';
+import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
+import { FormatSeconds } from './pipe/formatseconds.pipe'
 
 function jwtOptionsFactory(usersService: UsersService) {
   return {
@@ -38,6 +42,7 @@ function jwtOptionsFactory(usersService: UsersService) {
 @NgModule({
   declarations: [
     AppComponent,
+    FormatSeconds,
     HomeComponent,
     LoginComponent,
     DashboardComponent,
@@ -46,7 +51,8 @@ function jwtOptionsFactory(usersService: UsersService) {
     SigninComponent,
     MenubarComponent,
     UserDetailComponent,
-    DownloadsComponent
+    DownloadsComponent,
+    TaskDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +67,7 @@ function jwtOptionsFactory(usersService: UsersService) {
         deps: [UsersService]
       }
     }),
+    NgxChartsModule
   ],
   providers: [ CookieService,
     // Providing JwtInterceptor allow to inject JwtInterceptor manually into RefreshTokenInterceptor
@@ -72,7 +79,10 @@ function jwtOptionsFactory(usersService: UsersService) {
       useClass: RefreshTokenInterceptor,
       multi: true
     },
-    AuthGuard,UsersService],
+    AuthGuard,
+    UsersService,
+    TasksService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

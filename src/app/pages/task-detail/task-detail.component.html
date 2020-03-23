@@ -1,0 +1,111 @@
+<app-menubar></app-menubar>
+<div class="container">
+    <h1 class="title has-text-centered"> Detalle de actividad</h1>
+    <div class="card box">
+        <div class="card-content">
+            <div class="columns">
+                <div class="column">
+                    <strong>Tarea</strong>: {{task?.name}}
+                </div>
+
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <strong>Tiempo: </strong>{{formatTime(task?.time)}}
+                </div>
+                <div class="column">
+                    <strong>Creada en: </strong>{{formatDate(task?.createdAt)}}
+                </div>
+                <div class="column">
+                    <strong>Ultima actividad: </strong>{{formatDate(task?.updatedAt)}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin: 1em 0;">
+        <header class="card-header">
+            <h2 class="title card-header-title">Gráfico de registros</h2>
+  
+          </header>
+        <div class="card-content">
+
+    <div style="display: grid;">
+        <ngx-charts-bubble-chart
+          [scheme]="colorScheme"
+          [results]="chartData"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          [yScaleMin]="yScaleMin"
+          [yScaleMax]="yScaleMax"
+          [minRadius]="minRadius"
+          [maxRadius]="maxRadius"
+          >
+          <ng-template #tooltipTemplate let-model="model">
+              El {{model.name}} - Duración: {{model.r | formatSeconds}}
+          </ng-template>
+        </ngx-charts-bubble-chart>
+        </div>
+        </div>
+    </div>
+    <div class="card" style="margin: 1em 0;">
+        <header class="card-header">
+            <h2 class="title card-header-title">Detalle de registros</h2>
+  
+          </header>
+        <div class="card-content">
+    <div class="table-responsive">
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tiempo</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of task.detail" >
+                    <td>{{formatDate(task.timestamp)}}</td>
+                    <td>{{formatTimeWithSeconds(task.seconds)}}</td>
+
+                </tr>
+    
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+    <div class="card" style="margin: 1em 0;">
+        <header class="card-header">
+            <h2 class="title card-header-title">Gráfico de registro</h2>
+  
+          </header>
+        <div class="card-content"> 
+            <div class="columns is-mobile is-multiline">
+            <div class="column is-4 screenshot" *ngFor="let screenshot of screenshots?.docs">
+                <img (click)="clickScreenshot($event)" src="{{screenshot.filename}}" alt="{{formatDate(screenshot.createdAt)}}" (error)="errorImg($event)"/>
+                <span>{{formatDate(screenshot.createdAt)}}</span>
+            </div>
+
+        </div>
+        <div class="has-text-centered is-primary" style="margin: 2em">
+            <button class="button is-primary" (click)="loadMoreSceenshots()"  *ngIf="moreScreenshots">Cargar más</button>
+        </div>
+    </div>
+    </div>
+
+</div>
+
+<!-- The Modal -->
+<div id="modal" #modal class="modal" (click)="clickModal($event)">
+  
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="modalImg" #modalImg />
+  
+    <!-- Modal Caption (Image Text) -->
+    <div id="modalCaption" #modalCaption></div>
+</div>

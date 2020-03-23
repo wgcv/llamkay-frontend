@@ -4,22 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "dev": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
-  },
-  "build": {
-    "configurations": {
-      "production": {
-        "fileReplacements": [
-          {
-            "replace": "src/app/config/host.ts",
-            "with": "src/app/config/host.prod.ts"
-          }
-        ]
-      }
-    }
   },
   "private": true,
   "dependencies": {
@@ -36,7 +25,9 @@
     "@auth0/angular-jwt": "^4.0.0",
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@material/snackbar": "^5.1.0",
+    "@swimlane/ngx-charts": "^13.0.2",
     "bulma": "^0.8.0",
+    "moment": "^2.24.0",
     "ngx-cookie-service": "^3.0.2",
     "rxjs": "^6.5.4",
     "tslib": "^1.10.0",

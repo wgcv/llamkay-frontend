@@ -1,7 +1,5 @@
-import { User } from './user.interface';
-
 export interface Pagination {
-    "docs": [User]
+    "docs": [any]
     "totalDocs": number,
     "offset": number,
     "limit": number,

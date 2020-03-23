@@ -41,6 +41,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/app/config/host.ts",
+                  "with": "src/app/config/host.prod.ts"
                 }
               ],
               "optimization": true,

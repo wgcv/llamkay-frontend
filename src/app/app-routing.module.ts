@@ -7,6 +7,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserAddComponent } from './pages/user-add/user-add.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { DownloadsComponent } from './pages/downloads/downloads.component';
+import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
 
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { SigninComponent } from './pages/signin/signin.component';
@@ -51,12 +52,18 @@ const routes: Routes = [
     path: 'user/:id',
     component: UserDetailComponent,
     canActivate: [AuthGuard],
-    data: { title: 'Lista de usuario' }
+    data: { title: 'Detalle de usuario' }
   },
   {
     path: 'downloads',
     component: DownloadsComponent,
     data: { title: 'Descargar' }
+  },
+  {
+    path: 'task/:id',
+    component: TaskDetailComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Lista de usuario' }
   },
   
 ]

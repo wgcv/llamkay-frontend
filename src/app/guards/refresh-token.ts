@@ -14,9 +14,14 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
                 catchError((err) => {
                     const errorResponse = err as HttpErrorResponse;
                     if (errorResponse.status === 401) {
-                        return this.userService.refreshToken().pipe(mergeMap(() => {
+                        return this.userService.refreshToken().pipe(mergeMap((resAuth) => {
+                            let authReq = req;
+                            authReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + this.userService.authToken.token) });
 
-                            return this.jwtInterceptor.intercept(req, next);
+                            return next.handle(authReq);
+
+                            // return this.jwtInterceptor.intercept(req, next);
+
                         }));
                     }
                     return throwError(err);

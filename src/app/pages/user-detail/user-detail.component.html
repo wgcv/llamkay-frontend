@@ -5,22 +5,22 @@
         <div class="card-content">
 
         <h3 class="title">
-            {{user.firstname}} {{user.lastname}}
+            {{user?.firstname}} {{user?.lastname}}
 
         </h3>
         <div class="columns">
             <div class="column">
-                <strong>Correo electrónico</strong>:  {{user.email}}
+                <strong>Correo electrónico: </strong>{{user?.email}}
             </div>
             <div class="column">
             </div>
           </div>
           <div class="columns">
             <div class="column">
-                <strong>Departamento</strong>:  {{user.department}}
+                <strong>Departamento: </strong>{{user?.department}}
             </div>
             <div class="column">
-                <strong>Posición</strong>:  {{user.position}}
+                <strong>Posición: </strong>{{user?.position}}
 
             </div>
           </div>
@@ -31,19 +31,19 @@
         <div class="level-item has-text-centered">
           <div>
             <p class="heading">Hoy</p>
-            <p class="title">4h30m</p>
+            <p class="title" id="todayTime">{{formatTime(todayTime)}}</p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
             <p class="heading">Semana</p>
-            <p class="title">40h30m</p>
+            <p class="title" id="weekTime">{{formatTime(weekTime)}}</p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
             <p class="heading">Tareas</p>
-            <p class="title">10</p>
+            <p class="title" id="tasksNumber">{{total}}</p>
           </div>
         </div>
       </nav>
@@ -60,23 +60,26 @@
                             <th>Nombre</th>
                             <th>Tiempo</th>
                             <th>Creada</th>
+                            <th>Última modificación</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Prueba</td>
-                            <td>1h40m</td>
-                            <td>1 de junio del 2020</td>
+                      <tr *ngFor="let task of showTasks" >
+                        <td (click)="onClickTask(task._id)">{{task.name}}</td>
+                        <td (click)="onClickTask(task._id)">{{formatTime(task.time)}}</td>
+                        <td (click)="onClickTask(task._id)">{{formatDate(task.createdAt)}}</td>
+                        <td (click)="onClickTask(task._id)">{{formatDate(task.updatedAt)}}</td>
 
-                        </tr>
+                    </tr>
+        
             
                     </tbody>
                 </table>
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item is-active">Activas</a>
-        <a href="#" class="card-footer-item">Archivadas</a>
+        <a (click)="clickActivateTasks()" [class.is-active]= "activateTasks" class="card-footer-item">Activas</a>
+        <a (click)="clickArchiveTasks()" [class.is-active]= "!activateTasks" class="card-footer-item">Archivadas</a>
       </footer>
     </div>
     </div>
