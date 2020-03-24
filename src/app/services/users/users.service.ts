@@ -85,10 +85,9 @@ export class UsersService {
     return this.http.post<Auth>(Host.url + '/auth/refresh/', this.authToken).pipe(map(res => res));
 
 
-
   }
   refreshToken() {
-    const refreshObservable = this.http.post<Auth>(Host.url + '/auth/refresh/', this.authToken);
+    const refreshObservable = this.http.post<Auth>(Host.url + '/auth/refresh/', {"refreshToken": this.authToken.refreshToken});
     const refreshSubject = new ReplaySubject<Auth>(1);
     refreshSubject.subscribe((authData: Auth) => {
       this.authToken.token = authData.token;

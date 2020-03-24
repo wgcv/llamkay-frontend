@@ -23,7 +23,6 @@ export class UserDetailComponent implements OnInit {
       this.userId = params.get("id")
       this.userService.getUser(this.userId).subscribe((data) => {
         this.user = data
-        console.log(data)
       })
     });
   }

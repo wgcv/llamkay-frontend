@@ -30,8 +30,6 @@ export class UserListComponent implements OnInit {
       });
   }
   onClickUser(id){
-    console.log(id)
     this.router.navigateByUrl('user/'+id)
-
   }
 }

@@ -7,6 +7,7 @@ import { Host } from './config/host';
 import { JWT_OPTIONS, JwtInterceptor, JwtModule } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
 import { RefreshTokenInterceptor } from './guards/refresh-token';
+import { TokenInterceptor } from './guards/token.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ function jwtOptionsFactory(usersService: UsersService) {
     whitelistedDomains: [Host.host]
   };
 }
+
 
 @NgModule({
   declarations: [
@@ -61,11 +63,8 @@ function jwtOptionsFactory(usersService: UsersService) {
   providers: [ CookieService,
     // Providing JwtInterceptor allow to inject JwtInterceptor manually into RefreshTokenInterceptor
     JwtInterceptor,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useExisting: JwtInterceptor,
-      multi: true
-    },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RefreshTokenInterceptor,

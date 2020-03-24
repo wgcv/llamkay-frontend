@@ -1,5 +1,5 @@
 export const Host = {
-    host: 'localhost:3600',
-    url: 'http://localhost:3600',
-    static: 'http://localhost:3600/static/'
+    host: 'wwww.lkay.io',
+    url: 'https://www.lkay.io/api',
+    static: 'https://www.lkay.io/static'
 };

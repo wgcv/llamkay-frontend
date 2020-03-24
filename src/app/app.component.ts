@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'llamkay-frontend';
+  title = 'lkay.io - Software para trabajo remoto';
 }
