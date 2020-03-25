@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserAddComponent } from './pages/user-add/user-add.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { DownloadsComponent } from './pages/downloads/downloads.component';
 
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { SigninComponent } from './pages/signin/signin.component';
@@ -52,6 +53,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { title: 'Lista de usuario' }
   },
+  {
+    path: 'downloads',
+    component: DownloadsComponent,
+    data: { title: 'Descargar' }
+  },
+  
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

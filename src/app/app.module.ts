@@ -23,6 +23,7 @@ import { AuthGuard } from './guards/auth.guards';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarComponent } from './components/menubar/menubar.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { DownloadsComponent } from './pages/downloads/downloads.component';
 
 function jwtOptionsFactory(usersService: UsersService) {
   return {
@@ -44,7 +45,8 @@ function jwtOptionsFactory(usersService: UsersService) {
     UserListComponent,
     SigninComponent,
     MenubarComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    DownloadsComponent
   ],
   imports: [
     BrowserModule,
