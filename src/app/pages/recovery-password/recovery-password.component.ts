@@ -23,11 +23,10 @@ export class RecoveryPasswordComponent implements OnInit {
   constructor(private userService: UsersService, private router: Router, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) { }
  
   ngOnInit(): void {
-      this.activatedRoute.paramMap.subscribe(params => {
-        console.log(params.get("email"))
-        this.email = params.get("email")
-        this.resetPasswordToken = params.get("token")        
-      })
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.email = params.get("email")
+      this.resetPasswordToken = params.get("token")       
+  });
   }
 
   bluertxtPassword(e) {
