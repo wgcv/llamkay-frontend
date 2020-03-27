@@ -24,8 +24,8 @@ export class RecoveryPasswordComponent implements OnInit {
  
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.email = params.get("email")
-      this.resetPasswordToken = params.get("token")       
+      this.email = params['email']
+      this.resetPasswordToken = params['token']
   });
   }
 
