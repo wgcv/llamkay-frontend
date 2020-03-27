@@ -38,6 +38,10 @@ export class UsersService {
     return this.http.post<User>(Host.url + '/users/', user)
       .pipe(map(res => res));
   }
+  recoveryPasswordUser(user: User) {
+    return this.http.post<User>(Host.url + '/auth/recovery-password/', user)
+      .pipe(map(res => res));
+  }
   getUsers() {
     return this.http.get<Pagination>(Host.url + '/users/')
       .pipe(map(res => res));
@@ -61,8 +65,10 @@ export class UsersService {
   return null;
 }
   storeAuthData(auth: Auth) {
-    this.cookieService.set('refreshToken', auth.refreshToken);
-    this.cookieService.set('token', auth.token);
+    // this.cookieService.set('refreshToken', auth.refreshToken);
+    // this.cookieService.set('token', auth.token);
+    this.cookieService.set('refreshToken', auth.refreshToken, 31);
+    this.cookieService.set('token', auth.token, 31);
     this.authToken = auth;
   }
   loadAuth() {
@@ -72,14 +78,32 @@ export class UsersService {
     this.authToken = auth;
   }
   loggedIn() {
-    return this.haveToken();
+    let haveToken = this.haveToken();
+    if(!haveToken){
+      this.logout();
+    }
+    return haveToken
   }
-  logout() {
+  logout(redirect?) {
     this.authToken.token = '';
     this.authToken.refreshToken = '';
     this.cookieService.delete('refreshToken');
     this.cookieService.delete('token');
+    this.cookieService.deleteAll()
+    if(redirect){
+      this.router.navigate([redirect]);
 
+    }else{
+      this.router.navigate(['/login']);
+
+    }
+  }
+  logoutNoRedirect() {
+    this.authToken.token = '';
+    this.authToken.refreshToken = '';
+    this.cookieService.delete('refreshToken');
+    this.cookieService.delete('token');
+    this.cookieService.deleteAll()
   }
   refresh(){
     return this.http.post<Auth>(Host.url + '/auth/refresh/', this.authToken).pipe(map(res => res));
@@ -96,7 +120,6 @@ export class UsersService {
       this.storeAuthData(this.authToken);
     }, (err) => {
       this.logout();
-      this.router.navigate(['/login']);
 
     });
 
@@ -110,12 +133,11 @@ export class UsersService {
         return true;
       }
     }
-    this.logout();
     return false;
   }
 
-  user(_id: number, email: string, firstname: string, lastname: string, password: string, company: string, department: string, position: string, isAdmin: boolean, permissions: any) {
-    const user: User = {_id, email, firstname, lastname, password, company, department, position, isAdmin, permissions};
+  user(_id: number, email: string, firstname: string, lastname: string, password: string, company: string, department: string, position: string, isAdmin: boolean, permissions: any, resetPasswordToken: string) {
+    const user: User = {_id, email, firstname, lastname, password, company, department, position, isAdmin, permissions, resetPasswordToken};
     return user;
   }
 

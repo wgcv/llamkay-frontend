@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
 
   submitLogin() {
     if ((this.txtPassword.nativeElement.value != "" && this.validateEmail(this.txtMail.nativeElement.value) && this.txtMail.nativeElement.value != "")) {
-      this.user = this.userService.user(null, this.txtMail.nativeElement.value, null, null, this.txtPassword.nativeElement.value, null, null, null, null, null);
+      this.user = this.userService.user(null, this.txtMail.nativeElement.value, null, null, this.txtPassword.nativeElement.value, null, null, null, null, null, null);
       this.userService.authenticateUser(this.user).subscribe(authData => {
         if(authData.user.isAdmin){
           this.userService.storeAuthData(authData as Auth);

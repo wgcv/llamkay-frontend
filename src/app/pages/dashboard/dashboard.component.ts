@@ -13,9 +13,6 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UsersService, private router: Router, private snackBar: MatSnackBar,) { }
 
   ngOnInit(): void {
-    if (this.userService.haveToken()) {
-      this.router.navigateByUrl('/dashboard');
-    }
   }
   goAddUser(){
     this.router.navigateByUrl('/user/add');

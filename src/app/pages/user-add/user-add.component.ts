@@ -34,9 +34,6 @@ export class UserAddComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (!this.userService.haveToken()) {
-      this.router.navigateByUrl('/login');
-    }
   }
 
   bluertxtMail(e) {
@@ -120,7 +117,7 @@ export class UserAddComponent implements OnInit {
       });
       return false;
 
-       ;}
+      }
     if ((this.txtFirstname.nativeElement.value == "") || (this.txtLastname.nativeElement.value == "")) { 
       this.snackBar.open("Revisar los campos son requeridos", 'Corregir', {
         duration: 5000,
@@ -128,7 +125,7 @@ export class UserAddComponent implements OnInit {
       return false;
 
     }
-      this.user = this.userService.user(null, this.txtMail.nativeElement.value, this.txtFirstname.nativeElement.value, this.txtLastname.nativeElement.value, this.txtPassword.nativeElement.value, null, this.txtDepartment.nativeElement.value, this.txtPosition.nativeElement.value, null, null);
+      this.user = this.userService.user(null, this.txtMail.nativeElement.value, this.txtFirstname.nativeElement.value, this.txtLastname.nativeElement.value, null, null, this.txtDepartment.nativeElement.value, this.txtPosition.nativeElement.value, null, null, null);
       this.userService.registerUser(this.user).subscribe(data => {
         this.snackBar.open("Se añadió empleado", 'Cerrar', {
           duration: 5000,

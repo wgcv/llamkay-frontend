@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '../../interfaces/user.interface';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-user-list',
@@ -13,17 +14,29 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserListComponent implements OnInit {
   userList: [User]
-
-  constructor(private userService: UsersService, private router: Router, private snackBar: MatSnackBar) { }
+  showTable: boolean = false
+  constructor(private spinner: NgxSpinnerService, private userService: UsersService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    if (!this.userService.haveToken()) {
-      this.router.navigateByUrl('/login');
-    }
+    this.spinner.show();
+    this.getUsers()
+
+  }
+  getUsers(){
     this.userService.getUsers().subscribe((data) => {
       this.userList = data.docs
-      });
-
+      this.showTable = true
+      this.spinner.hide()
+      }, (err)=>{
+        console.log(err)
+        if(err.statusText==='Unknown Error'){
+          this.getUsers()
+        }else{
+          this.snackBar.open("Por favor actualicé la página, se produjo error: '"+ err.message+"'", 'Error', {
+            duration: 5000,
+          });
+        }
+      })
   }
   onSearch(event){
     this.userService.searchUsers(event.target.value).subscribe((data) => {

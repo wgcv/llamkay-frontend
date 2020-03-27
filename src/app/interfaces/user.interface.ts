@@ -9,4 +9,5 @@ export interface User {
     permissions: any;
     department: string;
     position: string;
+    resetPasswordToken: string,
 }

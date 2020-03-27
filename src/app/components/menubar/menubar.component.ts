@@ -20,7 +20,6 @@ export class MenubarComponent implements OnInit {
   }
   logout(){
     this.userService.logout();
-    this.router.navigateByUrl('/');
 
   }
 }

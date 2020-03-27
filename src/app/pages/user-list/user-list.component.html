@@ -1,7 +1,7 @@
 <app-menubar></app-menubar>
 <div class="container">
     <div class="section searchbar">
-            <h1 class="title has-text-centered">Lista de empleados</h1>
+            <h1 class="title has-text-centered">Lista de colaboradores</h1>
 
             <div class="field">
                 <p class="control has-icons-left">
@@ -12,7 +12,18 @@
                 </p>
               </div>
     </div>
-    <div class="table-responsive">
+    <div class="container spinner" *ngIf="!showTable">
+        <ngx-spinner
+        bdOpacity = 0.9
+        bdColor = "#fff"
+        size = "medium"
+        color = "#00d1b2"
+        type = "ball-scale-ripple-multiple"
+        [fullScreen] = "false"
+        >
+        </ngx-spinner>
+    </div>
+    <div #table class="table-responsive" *ngIf="showTable">
     <table class="table is-hoverable">
         <thead>
             <tr>
@@ -24,6 +35,7 @@
             </tr>
         </thead>
         <tbody>
+
             <tr *ngFor="let user of userList" >
                 <td (click)="onClickUser(user._id)">{{user.firstname}}</td>
                 <td (click)="onClickUser(user._id)">{{user.lastname}}</td>
@@ -34,5 +46,6 @@
 
         </tbody>
     </table>
+
 </div>
 </div>

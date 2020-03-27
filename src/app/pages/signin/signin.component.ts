@@ -127,20 +127,20 @@ export class SigninComponent implements OnInit {
       this.snackBar.open("Todos los campos son requeridos", 'Corregir', {
         duration: 5000,
       });
-       return true
+       return false
        ;}
     if ((this.txtFirstname.nativeElement.value == "") || (this.txtLastname.nativeElement.value == "")) { 
       this.snackBar.open("Todos los campos son requeridos", 'Corregir', {
         duration: 5000,
-      });return true;
+      });return false;
     }
     if ((this.txtCompany.nativeElement.value == "") || (this.txtPassword.nativeElement.value == "") || (this.txtPassword.nativeElement.value.length < 7)) { 
       this.snackBar.open("Todos los campos son requeridos", 'Corregir', {
         duration: 5000,
       });
-      return true;
+      return false;
     }
-      this.user = this.userService.user(null, this.txtMail.nativeElement.value, this.txtFirstname.nativeElement.value, this.txtLastname.nativeElement.value, this.txtPassword.nativeElement.value,null, null, null, null, null);
+      this.user = this.userService.user(null, this.txtMail.nativeElement.value, this.txtFirstname.nativeElement.value, this.txtLastname.nativeElement.value, this.txtPassword.nativeElement.value,null, null, null, null, null, null);
       this.company = {"_id":null, "logo":null, "name": this.txtCompany.nativeElement.value}
       this.userService.registerNewUser({"user":this.user, "company": this.company}).subscribe(data => {
         this.snackBar.open("Se registro con éxito", 'Cerrar', {

@@ -8,6 +8,7 @@ import { UserAddComponent } from './pages/user-add/user-add.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { DownloadsComponent } from './pages/downloads/downloads.component';
 import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
+import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
 
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { SigninComponent } from './pages/signin/signin.component';
@@ -64,6 +65,12 @@ const routes: Routes = [
     component: TaskDetailComponent,
     canActivate: [AuthGuard],
     data: { title: 'Lista de usuario' }
+  },
+  {
+    path: 'recovery-password/:email/:token',
+    canActivate: [AuthGuard],
+    component: RecoveryPasswordComponent,
+    data: { title: 'Asignar contraseña' }
   },
   
 ]

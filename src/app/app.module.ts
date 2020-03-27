@@ -28,6 +28,9 @@ import { DownloadsComponent } from './pages/downloads/downloads.component';
 import { TasksService } from './services/tasks/tasks.service';
 import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
 import { FormatSeconds } from './pipe/formatseconds.pipe'
+import { NgxSpinnerModule } from "ngx-spinner";
+import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
+
 
 function jwtOptionsFactory(usersService: UsersService) {
   return {
@@ -52,7 +55,8 @@ function jwtOptionsFactory(usersService: UsersService) {
     MenubarComponent,
     UserDetailComponent,
     DownloadsComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    RecoveryPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,7 @@ function jwtOptionsFactory(usersService: UsersService) {
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    NgxSpinnerModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,

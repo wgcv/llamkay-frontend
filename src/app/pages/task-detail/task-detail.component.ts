@@ -8,6 +8,7 @@ import { Router, ActivatedRoute} from '@angular/router';
 import * as moment from 'moment';
 import { Pagination } from 'src/app/interfaces/pagination.interface';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -20,12 +21,13 @@ export class TaskDetailComponent implements OnInit {
   screenshots: Pagination
   moreScreenshots: boolean = true
   chartData: any
-  constructor(private tasksService: TasksService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private tasksService: TasksService, private userService:UsersService, private router: Router, private activatedRoute: ActivatedRoute) { }
   @ViewChild('modal') modal: ElementRef;
   @ViewChild('modalImg') modalImg: ElementRef;
   @ViewChild('modalCaption') modalCaption: ElementRef;
 
   ngOnInit(): void {
+
     moment.locale('es')
     this.activatedRoute.paramMap.subscribe(params => {
       this.taskId = params.get("id")
