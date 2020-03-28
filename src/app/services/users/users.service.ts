@@ -141,4 +141,9 @@ export class UsersService {
     return user;
   }
 
+  // company service
+  createCupon(cupon: any) {
+    return this.http.post<any>(Host.url + '/cupon/', cupon)
+      .pipe(map(res => res));
+  }
 }

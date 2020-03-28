@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -8,9 +9,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      sessionStorage.setItem('cupon', params['cupon'])
+  });
   }
   @ViewChild('navBurger') navBurger: ElementRef;
   @ViewChild('navMenu') navMenu: ElementRef;
