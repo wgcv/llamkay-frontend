@@ -68,7 +68,6 @@ const routes: Routes = [
   },
   {
     path: 'recovery-password',
-    canActivate: [AuthGuard],
     component: RecoveryPasswordComponent,
     data: { title: 'Asignar contraseña' }
   },

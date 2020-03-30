@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UsersService } from 'src/app/services/users/users.service';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private userService: UsersService) { }
+
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
       sessionStorage.setItem('cupon', params['cupon'])
@@ -24,6 +26,9 @@ export class HomeComponent implements OnInit {
     this.navMenu.nativeElement.classList.toggle('is-active');
   }
  
+  isLogin(){
+   return this.userService.haveToken()
+  }
 
 
 
