@@ -138,12 +138,17 @@ export class UserAddComponent implements OnInit {
                 errorText = 'Error: ' + 'El correo ya se encuentra registrado.';
                 }
                 else{
+                  if(error.status == 0){
+                    errorText = "No hay internet"
+      
+                  }else{
                   errorText = "Error contactar a soporte por favor"
                   console.log(error)
                 }
+                }
           }else{
-            errorText = "Error contactar a soporte por favor"
-            console.log(error)
+              errorText = "Error contactar a soporte por favor"
+              console.log(error)
           }
         this.snackBar.open(errorText, 'Corregir', {
           duration: 5000,

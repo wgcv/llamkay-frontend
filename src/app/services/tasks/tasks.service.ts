@@ -2,21 +2,19 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Pagination } from '../../interfaces/pagination.interface';
 
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
 import { Host } from '../../config/host';
 import { map } from 'rxjs/operators';
 import { Task } from 'src/app/interfaces/task.interfaces';
 
+           
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
 
   constructor(@Inject(HttpClient) private http: HttpClient,
-    @Inject(CookieService) private cookieService: CookieService,
-
     @Inject(Router) private router: Router) { }
   getTasks(userId) {
     return this.http.get<Pagination>(Host.url + '/all/tasks/'+userId)

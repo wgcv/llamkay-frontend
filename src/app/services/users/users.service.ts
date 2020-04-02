@@ -16,7 +16,6 @@ import { mergeMap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-@Injectable()
 export class UsersService {
   authToken: Auth;
 
