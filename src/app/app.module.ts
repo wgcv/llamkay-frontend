@@ -30,6 +30,10 @@ import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
 import { FormatSeconds } from './pipe/formatseconds.pipe'
 import { NgxSpinnerModule } from "ngx-spinner";
 import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
+import { UserEditComponent } from './pages/user-edit/user-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 function jwtOptionsFactory(usersService: UsersService) {
@@ -56,7 +60,9 @@ function jwtOptionsFactory(usersService: UsersService) {
     UserDetailComponent,
     DownloadsComponent,
     TaskDetailComponent,
-    RecoveryPasswordComponent
+    RecoveryPasswordComponent,
+    UserEditComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +70,10 @@ function jwtOptionsFactory(usersService: UsersService) {
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    MatDialogModule,
     NgxSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,

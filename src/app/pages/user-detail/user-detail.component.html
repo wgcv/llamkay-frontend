@@ -1,86 +1,119 @@
 <app-menubar></app-menubar>
 <div class="container">
-    <h1 class="title has-text-centered"> Detalle de colaborador</h1>
-    <div class="card box">
-        <div class="card-content">
-
-        <h3 class="title">
-            {{user?.firstname}} {{user?.lastname}}
-
-        </h3>
-        <div class="columns">
-            <div class="column">
-                <strong>Correo electrónico: </strong>{{user?.email}}
-            </div>
-            <div class="column">
-            </div>
-          </div>
-          <div class="columns">
-            <div class="column">
-                <strong>Departamento: </strong>{{user?.department}}
-            </div>
-            <div class="column">
-                <strong>Posición: </strong>{{user?.position}}
-
-            </div>
-          </div>
-          </div>
-    </div>
-
-    <nav class="level is-mobile" style="margin:3em 2em">
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading">Hoy</p>
-            <p class="title" id="todayTime">{{formatTime(todayTime)}}</p>
-          </div>
+  <h1 class="title has-text-centered"> Detalle de colaborador</h1>
+  <div class="card">
+    <header class="card-header">
+      <h2 class="title card-header-title" style="margin: 0;">
+        {{user?.firstname}} {{user?.lastname}}
+      </h2>
+      <div class="dropdown is-right is-active">
+        <div class="dropdown-trigger">
+          <a class="primary" (click)="userClick()" aria-haspopup="true" aria-controls="dropdown-menu6">
+            <p style="margin: 1em;">
+              <i class="fas fa-ellipsis-v"></i>
+            </p>
+          </a>
         </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading">Semana</p>
-            <p class="title" id="weekTime">{{formatTime(weekTime)}}</p>
+        <div class="dropdown-menu" *ngIf="userExpander == true" id="dropdown-menu6" role="menu">
+          <div class="dropdown-content">
+            <a [routerLink]="['/user/edit', user?._id]" class="dropdown-item">
+              Editar colaboraor
+            </a>
           </div>
-        </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading">Tareas</p>
-            <p class="title" id="tasksNumber">{{total}}</p>
+          <div class="dropdown-content">
+            <a class="dropdown-item" (click)="sendPasswordRecovery()">
+              Enviar cambio de contraseña
+            </a>
           </div>
-        </div>
-      </nav>
-    <div class="card">
-        <header class="card-header">
-          <h2 class="title card-header-title">Tareas</h2>
-
-        </header>
-        <div class="card-content">
-            <div class="table-responsive">
-                <table class="table is-hoverable is-fullwidth">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Tiempo</th>
-                            <th>Creada</th>
-                            <th>Última modificación</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let task of showTasks" >
-                        <td (click)="onClickTask(task._id)">{{task.name}}</td>
-                        <td (click)="onClickTask(task._id)">{{formatTime(task.time)}}</td>
-                        <td (click)="onClickTask(task._id)">{{formatDate(task.createdAt)}}</td>
-                        <td (click)="onClickTask(task._id)">{{formatDate(task.updatedAt)}}</td>
-
-                    </tr>
-        
-            
-                    </tbody>
-                </table>
+          <div class="dropdown-content">
+            <a class="dropdown-item" (click)="removeUser()">
+              Eliminar colaboraor
+            </a>
+          </div>
         </div>
       </div>
-      <footer class="card-footer">
-        <a (click)="clickActivateTasks()" [class.is-active]= "activateTasks" class="card-footer-item">Activas</a>
-        <a (click)="clickArchiveTasks()" [class.is-active]= "!activateTasks" class="card-footer-item">Archivadas</a>
-      </footer>
+
+
+    </header>
+    <div class="card-content">
+      <div class="columns">
+        <div class="column">
+
+          <span *ngIf="user?.isAdmin" class="tag is-primary">Administrador</span>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <strong>Correo electrónico: </strong>{{user?.email}}
+        </div>
+        <div class="column">
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <strong>Departamento: </strong>{{user?.department}}
+        </div>
+        <div class="column">
+          <strong>Posición: </strong>{{user?.position}}
+
+        </div>
+      </div>
     </div>
+  </div>
+
+  <nav class="level is-mobile" style="margin:3em 2em">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Hoy</p>
+        <p class="title" id="todayTime">{{formatTime(todayTime)}}</p>
+      </div>
     </div>
-    
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Semana</p>
+        <p class="title" id="weekTime">{{formatTime(weekTime)}}</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Tareas</p>
+        <p class="title" id="tasksNumber">{{total}}</p>
+      </div>
+    </div>
+  </nav>
+  <div class="card">
+    <header class="card-header">
+      <h2 class="title card-header-title">Tareas</h2>
+
+    </header>
+    <div class="card-content">
+      <div class="table-responsive">
+        <table class="table is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Tiempo</th>
+              <th>Creada</th>
+              <th>Última modificación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of showTasks">
+              <td (click)="onClickTask(task._id)">{{task.name}}</td>
+              <td (click)="onClickTask(task._id)">{{formatTime(task.time)}}</td>
+              <td (click)="onClickTask(task._id)">{{formatDate(task.createdAt)}}</td>
+              <td (click)="onClickTask(task._id)">{{formatDate(task.updatedAt)}}</td>
+
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <a (click)="clickActivateTasks()" [class.is-active]="activateTasks" class="card-footer-item">Activas</a>
+      <a (click)="clickArchiveTasks()" [class.is-active]="!activateTasks" class="card-footer-item">Archivadas</a>
+    </footer>
+  </div>
+</div>

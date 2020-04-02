@@ -133,10 +133,18 @@ export class UserAddComponent implements OnInit {
         this.router.navigateByUrl('/dashboard');
       }, (error: any) => {
         let errorText = '';
+        if(error.error){
                 if (error.error.code == 11000) {
                 errorText = 'Error: ' + 'El correo ya se encuentra registrado.';
-                } 
-
+                }
+                else{
+                  errorText = "Error contactar a soporte por favor"
+                  console.log(error)
+                }
+          }else{
+            errorText = "Error contactar a soporte por favor"
+            console.log(error)
+          }
         this.snackBar.open(errorText, 'Corregir', {
           duration: 5000,
         });

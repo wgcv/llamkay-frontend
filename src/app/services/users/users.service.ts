@@ -38,6 +38,18 @@ export class UsersService {
     return this.http.post<User>(Host.url + '/users/', user)
       .pipe(map(res => res));
   }
+  updateUser(user: User) {
+    return this.http.patch<User>(Host.url + '/users/' + user._id, user)
+      .pipe(map(res => res));
+  }
+  deleteUser(user: User) {
+    return this.http.post<any>(Host.url + '/deleteuser/', user)
+      .pipe(map(res => res));
+  }
+  generateRecoveryPasswordUser(id) {
+    return this.http.post<any>(Host.url + '/auth/generate-recovery-password/' + id, {})
+      .pipe(map(res => res));
+  }
   recoveryPasswordUser(user: User) {
     return this.http.post<User>(Host.url + '/auth/recovery-password/', user)
       .pipe(map(res => res));

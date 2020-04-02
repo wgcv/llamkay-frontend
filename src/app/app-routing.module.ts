@@ -14,6 +14,7 @@ import { UserListComponent } from './pages/user-list/user-list.component';
 import { SigninComponent } from './pages/signin/signin.component';
 
 import { AuthGuard } from './guards/auth.guards';
+import { UserEditComponent } from './pages/user-edit/user-edit.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,12 @@ const routes: Routes = [
     component: UserDetailComponent,
     canActivate: [AuthGuard],
     data: { title: 'Detalle de usuario' }
+  },
+  {
+    path: 'user/edit/:id',
+    component: UserEditComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Editar de usuario' }
   },
   {
     path: 'downloads',
