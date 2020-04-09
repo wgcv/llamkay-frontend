@@ -141,7 +141,7 @@ export class SigninComponent implements OnInit {
       return false;
     }
       this.user = this.userService.user(null, this.txtMail.nativeElement.value, this.txtFirstname.nativeElement.value, this.txtLastname.nativeElement.value, this.txtPassword.nativeElement.value,null, null, null, null, null, null);
-      this.company = {"_id":null, "logo":null, "name": this.txtCompany.nativeElement.value}
+      this.company = {"_id":null, "logo":null, "name": this.txtCompany.nativeElement.value, "available": true, "paymentType": null, "paymentFrequency":null, "billing": false }
       this.userService.registerNewUser({"user":this.user, "company": this.company}).subscribe(data => {
         let cupon = sessionStorage.getItem('cupon')
         if(cupon){

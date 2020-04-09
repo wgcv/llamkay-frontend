@@ -30,6 +30,16 @@
               Eliminar colaboraor
             </a>
           </div>
+          <div class="dropdown-content" *ngIf="!user?.isAdmin" >
+            <a class="dropdown-item" (click)="makeAdmin(true)">
+              Asignar como administrador
+            </a>
+          </div>
+          <div class="dropdown-content" *ngIf="user?.isAdmin" >
+            <a class="dropdown-item" (click)="makeAdmin(false)">
+              Quitar como administrador
+            </a>
+          </div>
         </div>
       </div>
 
@@ -103,10 +113,7 @@
               <td (click)="onClickTask(task._id)">{{formatTime(task.time)}}</td>
               <td (click)="onClickTask(task._id)">{{formatDate(task.createdAt)}}</td>
               <td (click)="onClickTask(task._id)">{{formatDate(task.updatedAt)}}</td>
-
             </tr>
-
-
           </tbody>
         </table>
       </div>

@@ -41,6 +41,10 @@ export class UsersService {
     return this.http.patch<User>(Host.url + '/users/' + user._id, user)
       .pipe(map(res => res));
   }
+  setAdminUser(id, isAdmin) {
+    return this.http.post<any>(Host.url + '/users/set-admin/'+id, isAdmin)
+      .pipe(map(res => res));
+  }
   deleteUser(user: User) {
     return this.http.post<any>(Host.url + '/deleteuser/', user)
       .pipe(map(res => res));
@@ -66,7 +70,18 @@ export class UsersService {
     return this.http.get<Pagination>(Host.url + '/users?search=' + query)
       .pipe(map(res => res));
   }
-
+  getTotalOfNormalUsers(){
+    return this.http.get<any>(Host.url + '/users/count/normal-users')
+      .pipe(map(res => res));
+  }
+  getTotalUsers(){
+    return this.http.get<any>(Host.url + '/users/count/total-users')
+      .pipe(map(res => res));
+  }
+  getTotalOfAdmins(){
+    return this.http.get<any>(Host.url + '/users/count/admin')
+      .pipe(map(res => res));
+  }
   getAccessToken() {
     if(this.authToken){
       if(this.authToken.token){
@@ -118,8 +133,6 @@ export class UsersService {
   }
   refresh(){
     return this.http.post<Auth>(Host.url + '/auth/refresh/', this.authToken).pipe(map(res => res));
-
-
   }
   refreshToken() {
     const refreshObservable = this.http.post<Auth>(Host.url + '/auth/refresh/', {"refreshToken": this.authToken.refreshToken});

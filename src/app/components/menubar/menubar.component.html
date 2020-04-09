@@ -29,6 +29,9 @@
                 <a [routerLink]="['/users']" class="navbar-item">
                     Lista de colaboradores
                 </a>
+                <a href="/downloads" target="_blank" class="navbar-item">
+                    Descargar software
+                </a>
             </div>
         </div>
         <div class="navbar-user">
@@ -43,11 +46,7 @@
                                 </span></a>
                         </div>
                         <div class="dropdown-menu" *ngIf="userExpander == true" id="dropdown-menu6" role="menu">
-                            <div class="dropdown-content">
-                                <a href="/downloads" target="_blank" class="dropdown-item">
-                                    Descargar software
-                                </a>
-                            </div>
+
                             <div class="dropdown-content">
                                 <a (click)="logout()" class="dropdown-item">
                                     Salir

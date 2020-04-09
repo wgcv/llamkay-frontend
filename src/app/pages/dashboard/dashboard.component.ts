@@ -20,10 +20,8 @@ export class DashboardComponent implements OnInit {
   goUserList(){
     this.router.navigateByUrl('/users');
   }
-  goTaskList(){
-    this.snackBar.open("Estamos implementado nuevas características", 'Próximamente', {
-      duration: 5000,
-    });  
+  goConfiguration(){
+    this.router.navigateByUrl('/configuration');
   }
   goReports(){
     this.snackBar.open("Estamos implementado nuevas características", 'Próximamente', {

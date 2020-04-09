@@ -13,16 +13,16 @@
                 </span></p>Lista de colaboradores
         </div>
     </div>
-    <div class="columns is-desktop" style="display:none">
-        <div (click)="goTaskList()" class="column has-text-centered bg-primary menu-item">
-            <p><span class="icon is-small is-left">
-                    <i class="fab fa-trello fa-3x"></i>
-                </span></p>Tareas
-        </div>
-        <div (click)="goReports()" class="column has-text-centered bg-primary menu-item">
+    <div class="columns is-desktop">
+        <div (click)="goReports()" class="column has-text-centered bg-primary menu-item" style="display: none;">
             <p><span class="icon is-small is-left">
                     <i class="fas fa-chart-line fa-3x"></i>
                 </span></p>Reportes
+        </div>
+        <div (click)="goConfiguration()" class="column has-text-centered bg-primary menu-item">
+            <p><span class="icon is-small is-left">
+                <i class="fas fa-cogs fa-3x"></i>
+                </span></p>Configuración
         </div>
     </div>
 </div>

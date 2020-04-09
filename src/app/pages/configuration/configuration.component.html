@@ -1,0 +1,149 @@
+<app-menubar></app-menubar>
+<div class="container">
+  <h1 class="title has-text-centered" style="margin-bottom: 1em;">Configuración</h1>
+  <div class="columns is-desktop">
+    <div class="column is-6 is-offset-3">
+      <h2 class="title">Detalle de la empresa</h2>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal" style="text-align: left">
+          <label class="label">Nombre</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded has-icons-right">
+              <input class="input" type="text" #txtCompanyName placeholder="Nombre de la empresa" value="" disabled>
+              <!--
+              <span class="icon is-small is-right">
+                <i class="fas fa-pencil-alt"></i>
+                <i class="fas fa-check"></i>
+              </span>
+              -->
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="columns is-desktop">
+    <div class="column is-6 is-offset-3">
+      <h2 class="title">Cantidad de usuarios</h2>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal" style="text-align: left">
+          <label class="label">Administradores</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input class="input" type="text" #txtTotalAdmin disabled>
+            </p>
+          </div>
+        </div>
+      </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal" style="text-align: left">
+            <label class="label">Usuarios</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded">
+                <input class="input" type="text" #txtNormalUsers  disabled>
+              </p>
+            </div>
+          </div>
+        </div>
+
+          <div class="field is-horizontal">
+            <div class="field-label is-normal" style="text-align: left">
+              <label class="label">Total</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <input class="input" type="text" #txtTotalUsers disabled>
+                </p>
+              </div>
+            </div>
+          </div>
+    </div>
+    </div>
+  <div class="columns is-desktop">
+      <div class="column is-6 is-offset-3">
+        <h2 class="title">Pago</h2>
+        <div [hidden]="company?.paymentType==null">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal" style="text-align: left">
+              <label class="label">Tipo de pago</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <input class="input" type="text" #txtPaymentType disabled>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal" style="text-align: left">
+              <label class="label">Frecuencia</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <input class="input" type="text" #paymentFrequency disabled>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal" style="text-align: left">
+              <label class="label">Valor</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <input class="input" type="text" #txtPaymentValue disabled>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div [hidden]="company?.paymentType!=null">
+        <div class="columns is-desktop">
+          <div class="column is-6 is-offset-3">
+        <div class="tabs is-centered">
+          <ul>
+            <li [class.is-active]="monthly" (click)="changeToMonthly()"><a>Mensual</a></li>
+            <li [class.is-active]="!monthly" (click)="changeToAnnually()"><a>Anual</a></li>
+          </ul>
+        </div>
+        </div>
+        </div>
+        <div class="columns is-desktop">
+
+        <div class="column is-6 is-offset-3">
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal" style="text-align: left">
+            <label class="label">Valor</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded">
+                <input class="input" type="text" #txtPayValue disabled>
+              </p>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div class="columns is-desktop">
+          <div class="column is-6 is-offset-3">
+          <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+        </div>
+      </div>
+      </div>
+
+      </div>
+  </div>
+</div>

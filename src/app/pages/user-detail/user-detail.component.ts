@@ -183,4 +183,36 @@ removeUser(){
       console.log(err)
   });
 }
+makeAdmin(admin){
+  let message = ''
+  let confirmMessage = ''
+
+  if(admin){
+    message = "Seguro desea asignar a "+this.user.firstname +" " +this.user.lastname+" como administrador?"
+    confirmMessage = "Se asignó con éxito"
+  }else{
+    message = "Seguro desea quitar a "+this.user.firstname +" " +this.user.lastname+" como administrador?"
+    confirmMessage = "Se quitó privilegios con éxito"
+
+  }
+  const dialogRef = this.matDialog.open(DialogComponent, {
+    data: "Seguro desea asignar a "+this.user.firstname +" " +this.user.lastname+" como administrador?"
+  });
+  dialogRef.afterClosed().subscribe(result => {
+  this.userService.setAdminUser(this.user._id, {isAdmin: admin}).subscribe(data=>{
+    this.user = data
+    this.snackBar.open(confirmMessage, 'Listo', {
+      duration: 5000,
+    });
+  }, err =>{
+    if(err.error){
+      if(err.error.message === "The user is the same"){
+        this.snackBar.open("No puede realizar esta acción sobre tu usuario", 'Listo', {
+          duration: 5000,
+        });
+      }
+    }
+  })
+})
+}
 }

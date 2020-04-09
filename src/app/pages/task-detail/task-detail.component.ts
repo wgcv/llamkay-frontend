@@ -52,10 +52,7 @@ export class TaskDetailComponent implements OnInit {
             name: data.name,
             series: tempData
           }] 
-          console.log(this.chartData)
-
         Object.assign(this, this.chartData );
-
       })
       this.tasksService.getScreenshots(this.taskId, 1).subscribe((data) => {
         this.screenshots = data

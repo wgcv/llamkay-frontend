@@ -15,6 +15,7 @@ import { SigninComponent } from './pages/signin/signin.component';
 
 import { AuthGuard } from './guards/auth.guards';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
+import { ConfigurationComponent } from './pages/configuration/configuration.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,12 @@ const routes: Routes = [
     component: UserAddComponent,
     canActivate: [AuthGuard],
     data: { title: 'Agregar nuevo usuario' }
+  },
+  {
+    path: 'configuration',
+    component: ConfigurationComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Configuración' }
   },
   {
     path: 'users',

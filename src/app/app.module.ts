@@ -26,6 +26,8 @@ import { MenubarComponent } from './components/menubar/menubar.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { DownloadsComponent } from './pages/downloads/downloads.component';
 import { TasksService } from './services/tasks/tasks.service';
+import { InvoicesService } from './services/invoices/invoices.service';
+
 import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
 import { FormatSeconds } from './pipe/formatseconds.pipe'
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -34,6 +36,8 @@ import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ConfigurationComponent } from './pages/configuration/configuration.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 function jwtOptionsFactory(usersService: UsersService) {
@@ -62,7 +66,8 @@ function jwtOptionsFactory(usersService: UsersService) {
     TaskDetailComponent,
     RecoveryPasswordComponent,
     UserEditComponent,
-    DialogComponent
+    DialogComponent,
+    ConfigurationComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +78,7 @@ function jwtOptionsFactory(usersService: UsersService) {
     MatDialogModule,
     NgxSpinnerModule,
     FormsModule,
+    NgxPayPalModule,
     ReactiveFormsModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -95,7 +101,8 @@ function jwtOptionsFactory(usersService: UsersService) {
     },
     AuthGuard,
     UsersService,
-    TasksService
+    TasksService,
+    InvoicesService
   ],
   bootstrap: [AppComponent]
 })
