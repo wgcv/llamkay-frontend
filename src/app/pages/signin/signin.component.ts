@@ -144,10 +144,9 @@ export class SigninComponent implements OnInit {
       this.company = {"_id":null, "logo":null, "name": this.txtCompany.nativeElement.value, "available": true, "paymentType": null, "paymentFrequency":null, "billing": false }
       this.userService.registerNewUser({"user":this.user, "company": this.company}).subscribe(data => {
         let cupon = sessionStorage.getItem('cupon')
-        if(cupon){
-          if(cupon!== ''){
+        if(!(cupon == null || cupon === '' || cupon==='undefined')){
+          console.log(cupon)
             this.userService.createCupon({"cupon":cupon, "company": data.company}).subscribe(data => {})
-          }
         }
         this.snackBar.open("Se registro con éxito", 'Cerrar', {
           duration: 5000,
