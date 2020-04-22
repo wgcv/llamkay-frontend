@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { TasksService } from 'src/app/services/tasks/tasks.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-reports',
@@ -13,14 +14,26 @@ export class ReportsComponent implements OnInit {
   initDate = new FormControl((new Date(new Date().getFullYear(), new Date().getMonth(), 1)).toISOString());
   finalDate = new FormControl((new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)).toISOString());
   reportResult = null
-  constructor(private tasksService: TasksService, private userService:UsersService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private spinner: NgxSpinnerService, private tasksService: TasksService, private userService:UsersService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  showReport: boolean = false
 
   ngOnInit(): void {
+    this.report()
+    this.initDate.valueChanges.subscribe(data=>{
+      this.report()
+    })
+    this.finalDate.valueChanges.subscribe(data=>{
+      this.report()
+    })
   }
   report(){
+    this.showReport = false
+    this.spinner.show();
    this.tasksService.getReportStats(this.initDate.value, this.finalDate.value).subscribe(data=>{
+    this.spinner.hide()
+    this.showReport = true
+
     this.reportResult = data
-    console.log(data)
    })
   }
   formatTime(time) {

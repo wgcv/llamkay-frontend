@@ -21,19 +21,23 @@
                       </mat-form-field>
                 </div>
             </div>
-            <div class="columns">
-                <div class="column">
-                    <button class="button is-primary" (click)="report()">Consultar</button>
-                </div>
-            </div>
         </div>
     </div>
-    <div class="card" *ngIf="reportResult" style="margin: 1em 0;">
+    <div class="card" style="margin: 1em 0;">
         <header class="card-header">
             <h2 class="title card-header-title">Detalle</h2>
           </header>
         <div class="card-content">
-            <div class="table-responsive">
+          <ngx-spinner
+          bdOpacity = 0.9
+          bdColor = "#fff"
+          size = "medium"
+          color = "#00d1b2"
+          type = "ball-scale-ripple-multiple"
+          [fullScreen] = "false"
+          >
+          </ngx-spinner>
+            <div class="table-responsive" *ngIf="showReport">
                 <table class="table is-hoverable is-fullwidth">
                   <thead>
                     <tr>
