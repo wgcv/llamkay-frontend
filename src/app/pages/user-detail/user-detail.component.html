@@ -68,6 +68,12 @@
 
         </div>
       </div>
+      <div class="columns">
+        <div class="column">
+          <a *ngIf="user" [routerLink]="['/user/timetable', user?._id]" class="button"><i class="fas fa-calendar-alt" style="margin: 0 0.5em; color: #ff3860;"></i> Tabla de tiempo</a>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -109,10 +115,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let task of showTasks">
-              <td (click)="onClickTask(task._id)">{{task.name}}</td>
-              <td (click)="onClickTask(task._id)">{{formatTime(task.time)}}</td>
-              <td (click)="onClickTask(task._id)">{{formatDate(task.createdAt)}}</td>
-              <td (click)="onClickTask(task._id)">{{formatDate(task.updatedAt)}}</td>
+              <td (click)="onClickTask(task?._id)">{{task.name}}</td>
+              <td (click)="onClickTask(task?._id)">{{formatTime(task.time)}}</td>
+              <td (click)="onClickTask(task?._id)">{{formatDate(task.createdAt)}}</td>
+              <td (click)="onClickTask(task?._id)">{{formatDate(task.updatedAt)}}</td>
             </tr>
           </tbody>
         </table>

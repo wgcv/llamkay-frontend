@@ -46,6 +46,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { ReportsComponent } from './pages/reports/reports.component';
+import { TimetableComponent } from './pages/timetable/timetable.component';
 
 
 function jwtOptionsFactory(usersService: UsersService) {
@@ -76,7 +77,8 @@ function jwtOptionsFactory(usersService: UsersService) {
     UserEditComponent,
     DialogComponent,
     ConfigurationComponent,
-    ReportsComponent
+    ReportsComponent,
+    TimetableComponent
   ],
   imports: [
     BrowserModule,

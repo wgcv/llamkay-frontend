@@ -28,7 +28,10 @@ export class TasksService {
     return this.http.get<Pagination>(Host.url + '/all/archive/tasks/'+userId)
       .pipe(map(res => res));
   }
-  
+  getTimetable(userId, from, until) {
+    return this.http.get<any>(Host.url + '/tasks/timetable/' + userId + '?from=' + from + '&until=' + until)
+      .pipe(map(res => res));
+  }
   getStats(userId, from, until) {
     return this.http.get<any>(Host.url + '/tasks/stats/' + userId + '?from=' + from + '&until=' + until)
       .pipe(map(res => res));
@@ -37,6 +40,7 @@ export class TasksService {
     return this.http.get<any>(Host.url + '/tasks/stats' + '?from=' + from + '&until=' + until)
       .pipe(map(res => res));
   }
+
   getScreenshots(taskId, page) {
     return this.http.get<Pagination>(Host.url + '/screenshots/all/' + taskId+'?page='+page)
       .pipe(map(res => res));

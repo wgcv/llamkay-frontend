@@ -17,6 +17,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { AuthGuard } from './guards/auth.guards';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
+import { TimetableComponent } from './pages/timetable/timetable.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,12 @@ const routes: Routes = [
     component: UserEditComponent,
     canActivate: [AuthGuard],
     data: { title: 'Editar de usuario' }
+  },
+  {
+    path: 'user/timetable/:id',
+    component: TimetableComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Tabla de tiempo' }
   },
   {
     path: 'downloads',

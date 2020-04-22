@@ -1,0 +1,121 @@
+.schedule 
+    display: grid
+    grid-gap: 0.1em
+    grid-template-rows: [tracks] auto [time-0000] 1.25em [time-0030] 1.25em [time-0100] 1.25em [time-0130] 1.25em [time-0200] 1.25em [time-0230] 1.25em [time-0300] 1.25em [time-0330] 1.25em [time-0400] 1.25em [time-0430] 1.25em [time-0500] 1.25em [time-0530] 1.25em  [time-0600] 1.25em [time-0630] 1.25em [time-0700] 1.25em  [time-0730] 1.25em [time-0800] 1.25em [time-0830] 1.25em [time-0900] 1.25em [time-0930] 1.25em [time-1000] 1.25em [time-1030] 1.25em [time-1100] 1.25em [time-1130] 1.25em [time-1200] 1.25em [time-1230] 1.25em [time-1300] 1.25em [time-1330] 1.25em [time-1400] 1.25em [time-1430] 1.25em [time-1500] 1.25em [time-1530] 1.25em [time-1600] 1.25em [time-1630] 1.25em [time-1700] 1.25em [time-1730] 1.25em [time-1800] 1.25em [time-1830] 1.25em [time-1900] 1.25em [time-1930] 1.25em [time-2000] 1.25em [time-2030] 1.25em [time-2100] 1.25em [time-2130] 1.25em [time-2200] 1.25em [time-2230] 1.25em [time-2300] 1.25em [time-2330] 1.25em
+    grid-template-columns: [times] 4em 
+.time-slot 
+    grid-column: times
+    width: 100%
+    background: #fff
+    text-align: center
+
+.track-slot
+    display: none
+
+
+
+@supports( display:grid ) 
+    .track-slot 
+        display: block
+        padding: 10px 5px 5px
+        position: sticky
+        top: 0
+        z-index: 1000
+        width: 150px
+        text-align: center
+        background: #fff
+        min-width: 100%
+
+
+.session 
+    margin-bottom: 0
+    color: #fff
+    position: relative
+
+
+@supports( display:grid ) 
+    @media screen and (min-width: 700px) 
+        .session 
+            margin: 0
+          
+    
+
+body 
+    padding: 50px
+    max-width: 1100px
+    margin: 0 auto
+    line-height: 1.5
+
+
+.session 
+    padding: 0 .5em
+    border-radius: 2px
+    font-size: 14px
+
+.session-title,
+.session-time,
+.session-track,
+.session-presenter 
+    display: block
+
+
+.session-title,
+.time-slot 
+    margin: 0
+    font-size: 1em
+
+
+.session-title a 
+    color: #fff
+    text-decoration-style: dotted
+
+    &:focus 
+        outline: 2px dotted rgba(255,255,255,.8)
+    
+
+
+.track-slot,
+.time-slot 
+    font-weight: bold
+    font-size:.75em
+
+
+.track-all 
+    display: flex
+    justify-content: center
+    align-items: center
+    background: #ccc
+    color: #000
+    box-shadow: none
+
+
+
+
+.over-detail
+    z-index: 1000
+    position: absolute
+    background: #00d1b2
+    padding: 0.5em
+    left: 120px
+    width: 200px
+    top: -0.5em
+    color: #FFFFFF
+    border-radius: 0.3em
+
+.over-detail:before 
+  content: ' '
+  height: 0
+  position: absolute
+  width: 0
+  left: -18px
+  border: 10px solid transparent
+  border-right-color: #00d1b2
+
+.detail-title
+    color: #fff
+    font-size: 1.20rem
+    margin: 0 0 0.5rem 0
+    font-weight: 700
+
+.detail-task
+    margin: 0.5em
