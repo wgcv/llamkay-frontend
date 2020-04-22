@@ -5,6 +5,11 @@
         <div class="card-content">
             <div class="columns">
                 <div class="column">
+                    <strong>Colaborador: </strong> {{user?.firstname}} {{user?.lastname}}
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
                     <strong>Fecha inicial: </strong>
                     <mat-form-field>
                         <input matInput [matDatepicker]="initDatePicker"  [formControl]="initDate">

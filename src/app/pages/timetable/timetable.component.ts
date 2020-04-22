@@ -5,6 +5,7 @@ import { UsersService } from 'src/app/services/users/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { NgxSpinnerService } from "ngx-spinner";
+import { User } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-timetable',
@@ -19,6 +20,7 @@ export class TimetableComponent implements OnInit {
   hourList = ['0h00', '0h30', '1h00','1h30','2h00','2h30','3h00','3h30','4h00','4h30','5h00','5h30','6h00','6h30','7h00','7h30','8h00','8h30','9h00','9h30','10h00','10h30','11h00','11h30','12h00','12h30','13h30','14h00','14h30','15h00','15h30','16h00','16h30','17h00','17h30','18h00','18h30','19h00','19h30','20h00','20h30','21h00','21h30','22h00','22h30','23h00','23h30']
   sessionColors = ['#94d82e', '#3273dc', '#209cee', '#48c774', '#c35500', '#544D69', '#687f00']
   userId: string
+  user: User
   timetableResult:Array<any>
   constructor(private spinner: NgxSpinnerService, private tasksService: TasksService, private userService:UsersService, private router: Router, private activatedRoute: ActivatedRoute) { }
   showTimeable: boolean = false
@@ -29,6 +31,9 @@ export class TimetableComponent implements OnInit {
       this.userId = params.get("id")
       this.showTimeable = false
       this.getTimeTable()
+      this.userService.getUser(this.userId).subscribe(data=>{
+        this.user = data
+      })
     })
     this.initDate.valueChanges.subscribe(data=>{
       this.dateList = this.getDates(new Date(this.initDate.value), new Date(this.finalDate.value))
@@ -49,7 +54,6 @@ export class TimetableComponent implements OnInit {
       this.spinner.hide()
       this.showTimeable = true
       this.timetableResult = []
-      let hourStart_last,  minStart_last
       let startFormat_last, DayStart_last
       for (let i=0; i<data.length; i++){
         let start = moment(data[i].detail.timestamp)
@@ -151,7 +155,6 @@ export class TimetableComponent implements OnInit {
         startFormat_last = startFormat
         DayStart_last = start.diff(moment(this.initDate.value), 'days')
       }
-      console.log(this.timetableResult)
     })
   }
   getDates (startDate, endDate) {
