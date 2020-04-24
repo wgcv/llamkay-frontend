@@ -93,7 +93,8 @@
                 <h2 class="time-slot" style="grid-row: time-2230;">22h30</h2>
                 <h2 class="time-slot" style="grid-row: time-2300;">23h00</h2>
                 <h2 class="time-slot" style="grid-row: time-2330;">23h30</h2>
-                
+                <h2 class="time-slot" style="grid-row: time-2359;"></h2>
+
                 <div *ngFor="let task of timetableResult" class="session" [style.backgroundColor]="task.color" style="grid-column: {{task.dayStart+2}}; grid-row: {{task.startFormat}} / {{task.finishFormat}};"  (mouseover)="task.showDetail=true" (mouseout)="task.showDetail=false">
                     <h3 class="session-title"><a  [routerLink]="['/task', task?._id]">{{task.name}}</a></h3>
                     <span class="session-time">{{task.startTime}} - {{task.endTime}}</span>

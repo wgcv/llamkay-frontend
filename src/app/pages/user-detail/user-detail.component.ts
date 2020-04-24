@@ -226,7 +226,7 @@ makeAdmin(admin){
 
 getTimeTable(){
   this.tasksService.getTimetable(this.userId, this.initDate.toISOString(), this.finalDate.toISOString()).subscribe(data=> {
-
+  
     this.timetableResult = []
     let startFormat_last, DayStart_last
     for (let i=0; i<data.length; i++){
@@ -270,13 +270,16 @@ getTimeTable(){
       }else{
         finishFormat += finish.minutes()
       }
-      if (!(startFormat_last === startFormat  && DayStart_last ===start.diff(moment(this.initDate), 'days'))){
+      if(finishFormat=="time-0000"){
+        finishFormat = "time-2359"
+      }
+      if (!(startFormat_last === startFormat  && DayStart_last === start.diff(moment(new Date(this.initDate.format("MM/DD/YYYY").toString())), 'days'))){
         this.timetableResult.push({
           _id: data[i]._id,
           name: data[i].name,
           startFormat: startFormat,
           finishFormat: finishFormat,
-          dayStart: start.diff(moment(this.initDate), 'days'),
+          dayStart: start.diff(moment(new Date(this.initDate.format("MM/DD/YYYY").toString())), 'days'),
           startTime: moment(data[i].detail.timestamp).format("HH[h]mm"),
           endTime: moment(data[i].detail.timestamp).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
           time: time,
@@ -329,6 +332,8 @@ getTimeTable(){
       startFormat_last = startFormat
       DayStart_last = start.diff(moment(this.initDate), 'days')
     }
+    console.log(this.timetableResult)
+
   })
 }
 formatDateShort(date){

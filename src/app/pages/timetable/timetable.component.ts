@@ -96,7 +96,10 @@ export class TimetableComponent implements OnInit {
         }else{
           finishFormat += finish.minutes()
         }
-        if (!(startFormat_last === startFormat  && DayStart_last ===start.diff(moment(this.initDate.value), 'days'))){
+        if(finishFormat=="time-0000"){
+          finishFormat = "time-2359"
+        }
+        if (!(startFormat_last === startFormat  && DayStart_last === start.diff(moment(this.initDate.value), 'days'))){
           this.timetableResult.push({
             _id: data[i]._id,
             name: data[i].name,
