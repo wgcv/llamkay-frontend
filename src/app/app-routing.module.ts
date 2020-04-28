@@ -18,6 +18,7 @@ import { AuthGuard } from './guards/auth.guards';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   {
@@ -70,6 +71,12 @@ const routes: Routes = [
     component: UserDetailComponent,
     canActivate: [AuthGuard],
     data: { title: 'Detalle de usuario' }
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Política de privacidad' }
   },
   {
     path: 'user/edit/:id',
