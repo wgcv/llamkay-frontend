@@ -48,6 +48,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 
 
 function jwtOptionsFactory(usersService: UsersService) {
@@ -80,7 +81,8 @@ function jwtOptionsFactory(usersService: UsersService) {
     ConfigurationComponent,
     ReportsComponent,
     TimetableComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    TermsAndConditionsComponent
   ],
   imports: [
     BrowserModule,

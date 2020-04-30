@@ -19,6 +19,7 @@ import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 
 const routes: Routes = [
   {
@@ -75,8 +76,12 @@ const routes: Routes = [
   {
     path: 'privacy-policy',
     component: PrivacyPolicyComponent,
-    canActivate: [AuthGuard],
     data: { title: 'Política de privacidad' }
+  },
+  {
+    path: 'terms-and-conditions',
+    component: TermsAndConditionsComponent,
+    data: { title: 'Termino y condiciones' }
   },
   {
     path: 'user/edit/:id',

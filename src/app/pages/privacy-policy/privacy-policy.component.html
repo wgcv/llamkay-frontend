@@ -1,76 +1,10 @@
-<html class="lkayio_fixed_policy" id="lkayio_policy"><head>
-    <title>Política de Privacidad de lkay.io</title>
-  
-    <meta http-equiv="Content-Language" content="es">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="date" content="2020-04-28">
-    <meta http-equiv="last-modified" content="2020-04-28">
-    <meta itemprop="name" content="Política de Privacidad de lkay.io">
-    <meta itemprop="description" content="Esta Aplicación recoge algunos Datos Personales de sus Usuarios.">
-    <meta name="locale" content="es">
-    <meta name="title" content="Esta Aplicación recoge algunos Datos Personales de sus Usuarios.">
-    <meta name="description" content="Esta Aplicación recoge algunos Datos Personales de sus Usuarios.">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Política de Privacidad de lkay.io">
-    <meta name="twitter:description" content="Esta Aplicación recoge algunos Datos Personales de sus Usuarios.">
-    <meta name="twitter:site" content="@lkayio">
-    <meta name="twitter:image:src" content="https://www.lkayio.com/seo/assets/default.png">
-    <meta property="og:title" content="Política de Privacidad de lkay.io">
-    <meta property="og:description" content="Esta Aplicación recoge algunos Datos Personales de sus Usuarios.">
-    <meta property="og:site_name" content="lkayio">
-    <meta property="og:locale" content="es">
-    <meta property="og:type" content="website">
-  
-    <meta name="viewport" content="width=device-width">
-        <meta name="robots" content="noindex, follow">
-  
-  
-  <script data-dapp-detection="">
-  (function() {
-    let alreadyInsertedMetaTag = false
-  
-    function __insertDappDetected() {
-      if (!alreadyInsertedMetaTag) {
-        const meta = document.createElement('meta')
-        meta.name = 'dapp-detected'
-        document.head.appendChild(meta)
-        alreadyInsertedMetaTag = true
-      }
-    }
-  
-    if (window.hasOwnProperty('web3')) {
-      // Note a closure can't be used for this var because some sites like
-      // www.wnyc.org do a second script execution via eval for some reason.
-      window.__disableDappDetectionInsertion = true
-      // Likely oldWeb3 is undefined and it has a property only because
-      // we defined it. Some sites like wnyc.org are evaling all scripts
-      // that exist again, so this is protection against multiple calls.
-      if (window.web3 === undefined) {
-        return
-      }
-      __insertDappDetected()
-    } else {
-      var oldWeb3 = window.web3
-      Object.defineProperty(window, 'web3', {
-        configurable: true,
-        set: function (val) {
-          if (!window.__disableDappDetectionInsertion)
-            __insertDappDetected()
-          oldWeb3 = val
-        },
-        get: function () {
-          if (!window.__disableDappDetectionInsertion)
-            __insertDappDetected()
-          return oldWeb3
-        }
-      })
-    }
-  })()</script><style type="text/css">#lkayio_policy .close {display: none;}
+<div class="lkayio_fixed_policy" id="lkayio_policy">
+  <style type="text/css">#lkayio_policy .close {display: none;}
   #lkayio_policy #wbars {   overflow-y: auto;   -webkit-box-shadow: none;   -moz-box-shadow: none;   box-shadow: none;   height: auto; }
   #lkayio_policy .iub_container {  margin-top: 30px;  margin-bottom: 30px; }
   #lkayio_policy .iub_container > .iub_footer {  -webkit-box-shadow: none;  -moz-box-shadow: none;  box-shadow: none;  -webkit-border-radius: none;  -moz-border-radius: none;  border-radius: none; }
-  </style></head>
-  <body data-gr-c-s-loaded="true">
+  </style>
+
   
     
   
@@ -174,7 +108,34 @@
       <div class="one_line_col">
         <h2 id="data_processing_detailed_info">Información detallada del Tratamiento de los Datos Personales</h2>
         <p>Los Datos Personales se recogen para las siguientes finalidades y utilizando los siguientes servicios:</p>
-        <h3 class="">Servicios de plataforma y de alojamiento</h3><div class="expand-content" style="display: block;">
+        <h3>Estadísticas</h3>
+<div class="expand-content" style="display: block;">
+                   <p>Los servicios contenidos en esta sección permiten al Titular monitorizar y analizar el tráfico web y pueden ser utilizados para rastrear el comportamiento del Usuario.</p>
+                   <h4>Google Analytics (Google LLC)</h4>
+                   <div class="wrap">
+                     <p>Google Analytics es un servicio de análisis web prestado por Google LLC (“Google”). Google utiliza los Datos recogidos para rastrear y examinar el uso de esta Aplicación, para preparar informes de sus actividades y compartirlos con otros servicios de Google.<br>
+Google puede utilizar los Datos recogidos para contextualizar y personalizar los anuncios de su propia red de publicidad.</p>
+                   </div>
+
+                       <p>
+                         Datos Personales tratados:
+                         Cookies; Datos de uso.
+                       </p>
+
+                   
+<p>
+Lugar de tratamiento:
+EE.UU.
+–
+<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad</a> – <a href="https://tools.google.com/dlpage/gaoptout?hl=es" onclick="javascript:return tryFunc('tryGaOptOut',{href:'https://tools.google.com/dlpage/gaoptout?hl=es'})" target="_blank">Opt Out</a>.
+Integrante del acuerdo Privacy Shield”.
+</p>
+
+                   
+
+               </div>
+        <h3 class="">Servicios de plataforma y de alojamiento</h3>
+        <div class="expand-content" style="display: block;">
                      <p>Estos servicios tienen como propósito alojar y ejecutar los componentes clave de esta Aplicación, por lo que permiten la prestación de esta Aplicación desde una plataforma unificada. Estas plataformas proporcionan al Titular una amplia gama de herramientas (p. ej.: estadísticas, registro de usuarios, comentarios, gestión de bases de datos, comercio electrónico, tramitación de pagos) que implican la recogida y el tratamiento de Datos Personales. <br>
   Algunos de estos servicios funcionan a través de servidores distribuidos geográficamente, por lo que es difícil determinar la ubicación real en la que se almacenan los Datos Personales.</p>
   
@@ -448,5 +409,4 @@
   
         </div> <!-- /container base_container -->
       </div> <!-- /wbars_wrapper -->
-</body>
-</html>
+</div>
