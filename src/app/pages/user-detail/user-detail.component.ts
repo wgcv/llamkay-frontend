@@ -5,7 +5,9 @@ import { TasksService } from 'src/app/services/tasks/tasks.service';
 import { Router, ActivatedRoute} from '@angular/router';
 import { User } from '../../interfaces/user.interface';
 import { Task } from '../../interfaces/task.interfaces';
-import * as moment from 'moment';
+
+import * as moment from "moment/moment.js"
+
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';

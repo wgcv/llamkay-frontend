@@ -5,7 +5,7 @@ import {ViewChild, ElementRef} from '@angular/core';
 import { Task } from 'src/app/interfaces/task.interfaces';
 import { TasksService } from 'src/app/services/tasks/tasks.service';
 import { Router, ActivatedRoute} from '@angular/router';
-import * as moment from 'moment';
+import * as moment from "moment/moment.js"
 import { Pagination } from 'src/app/interfaces/pagination.interface';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { UsersService } from 'src/app/services/users/users.service';

@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { TasksService } from 'src/app/services/tasks/tasks.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import * as moment from 'moment';
+import * as moment from "moment/moment.js"
 import { NgxSpinnerService } from "ngx-spinner";
 import { User } from '../../interfaces/user.interface';
 
