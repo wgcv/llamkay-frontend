@@ -24,7 +24,8 @@ export class SigninComponent implements OnInit {
   @ViewChild('errorCompany') errorCompany: ElementRef;
   @ViewChild('txtPassword') txtPassword: ElementRef;
   @ViewChild('errorPassword') errorPassword: ElementRef;
-
+  @ViewChild('chckTerms') chckTerms: ElementRef;
+  
   @ViewChild('msgError') msgError: ElementRef;
   error: Boolean = false;
   user: User;
@@ -136,6 +137,18 @@ export class SigninComponent implements OnInit {
     }
     if ((this.txtCompany.nativeElement.value == "") || (this.txtPassword.nativeElement.value == "") || (this.txtPassword.nativeElement.value.length < 7)) { 
       this.snackBar.open("Todos los campos son requeridos", 'Corregir', {
+        duration: 5000,
+      });
+      return false;
+    }
+    if ((this.txtCompany.nativeElement.value == "") || (this.txtPassword.nativeElement.value == "") || (this.txtPassword.nativeElement.value.length < 7)) { 
+      this.snackBar.open("Todos los campos son requeridos", 'Corregir', {
+        duration: 5000,
+      });
+      return false;
+    }
+    if (!(this.chckTerms.nativeElement.checked)) { 
+      this.snackBar.open("Debe aceptar los Términos de Servicio y Política de Privacidad", 'Corregir', {
         duration: 5000,
       });
       return false;
