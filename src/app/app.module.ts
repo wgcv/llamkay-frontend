@@ -36,8 +36,16 @@ import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+import { MatNativeDateModule } from '@angular/material/core';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { ReportsComponent } from './pages/reports/reports.component';
 
 
 function jwtOptionsFactory(usersService: UsersService) {
@@ -67,7 +75,8 @@ function jwtOptionsFactory(usersService: UsersService) {
     RecoveryPasswordComponent,
     UserEditComponent,
     DialogComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +85,10 @@ function jwtOptionsFactory(usersService: UsersService) {
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatFormFieldModule, 
+    MatInputModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     NgxSpinnerModule,
     FormsModule,
     NgxPayPalModule,
@@ -99,6 +112,8 @@ function jwtOptionsFactory(usersService: UsersService) {
       useClass: RefreshTokenInterceptor,
       multi: true
     },
+    MatDatepickerModule,
+    MatNativeDateModule,
     AuthGuard,
     UsersService,
     TasksService,

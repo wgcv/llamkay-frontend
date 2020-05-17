@@ -12,6 +12,7 @@ import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-pa
 
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { SigninComponent } from './pages/signin/signin.component';
+import { ReportsComponent } from './pages/reports/reports.component';
 
 import { AuthGuard } from './guards/auth.guards';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
@@ -44,6 +45,12 @@ const routes: Routes = [
     component: UserAddComponent,
     canActivate: [AuthGuard],
     data: { title: 'Agregar nuevo usuario' }
+  },
+  {
+    path: 'reports',
+    component: ReportsComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Reportes' }
   },
   {
     path: 'configuration',

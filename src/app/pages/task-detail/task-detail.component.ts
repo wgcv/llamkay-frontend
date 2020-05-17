@@ -30,13 +30,9 @@ export class TaskDetailComponent implements OnInit {
     moment.locale('es')
     this.activatedRoute.paramMap.subscribe(params => {
       this.taskId = params.get("id")
-      console.log(this.taskId)
       this.tasksService.getTask(this.taskId).subscribe((data) => {
-        console.log(data)
-        
         this.task = data
         let tempData = []
-        console.log(this.taskId)
 
         for (let i=0;i<this.task.detail.length;i++){
             tempData.push({

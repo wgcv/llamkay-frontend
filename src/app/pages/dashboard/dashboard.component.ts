@@ -24,8 +24,6 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/configuration');
   }
   goReports(){
-    this.snackBar.open("Estamos implementado nuevas características", 'Próximamente', {
-      duration: 5000,
-    });  
+    this.router.navigateByUrl('/reports');
   }
 }

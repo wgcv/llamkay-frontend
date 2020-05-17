@@ -1,0 +1,64 @@
+<app-menubar></app-menubar>
+<div class="container">
+    <h1 class="title has-text-centered">Reportes</h1>
+    <div class="card box">
+        <div class="card-content">
+            <div class="columns">
+                <div class="column">
+                    <strong>Fecha inicial: </strong>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="initDatePicker"  [formControl]="initDate">
+                        <mat-datepicker-toggle matSuffix [for]="initDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #initDatePicker></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                <div class="column">
+                    <strong>Fecha final: </strong>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="finalDatePicker" [formControl]="finalDate">
+                        <mat-datepicker-toggle matSuffix [for]="finalDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #finalDatePicker></mat-datepicker>
+                      </mat-form-field>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <button class="button is-primary" (click)="report()">Consultar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" *ngIf="reportResult" style="margin: 1em 0;">
+        <header class="card-header">
+            <h2 class="title card-header-title">Detalle</h2>
+          </header>
+        <div class="card-content">
+            <div class="table-responsive">
+                <table class="table is-hoverable is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Departamento</th>
+                      <th>Posición</th>
+                      <th>Núm. de Tareas</th>
+                      <th>Tiempo</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let reportRow of reportResult">
+                      <td>{{reportRow.firstname}}</td>
+                      <td>{{reportRow.lastname}}</td>
+                      <td>{{reportRow.department}}</td>
+                      <td>{{reportRow.position}}</td>
+                      <td>{{reportRow.countTasks}}</td>
+                      <td>{{formatTime(reportRow.time)}}</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </div>
+</div>
