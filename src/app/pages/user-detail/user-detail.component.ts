@@ -238,9 +238,8 @@ getTimeTable(){
       }else if (start.minutes()<45){
         start = start.set({minute:30,second:0,millisecond:0})
       }else{
-        start = start.set({hour:start.hours()+1,minute:30,second:0,millisecond:0})
+        start = start.set({hour:start.hours()+1,minute:0,second:0,millisecond:0})
       }
-
       let time = Math.floor(data[i].detail.seconds/1800)
       if((data[i].detail.seconds%1800)>14){
         time += 1
@@ -249,7 +248,6 @@ getTimeTable(){
         time = 1
       }
       let finish = moment(start).add("minutes", time*30)
-
       let startFormat = "time-"
       if(start.hours()<10){
         startFormat += '0'+start.hours()
@@ -282,15 +280,15 @@ getTimeTable(){
           startFormat: startFormat,
           finishFormat: finishFormat,
           dayStart: start.diff(moment(new Date(this.initDate.format("MM/DD/YYYY").toString())), 'days'),
-          startTime: moment(data[i].detail.timestamp).format("HH[h]mm"),
-          endTime: moment(data[i].detail.timestamp).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
+          startTime: moment(start.toISOString()).format("HH[h]mm"),
+          endTime: moment(finish.toISOString()).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
           time: time,
           totalTime: data[i].time,
           color: this.getRandomColor(),
           tasks:[]
         })
-      }else{
-
+      }
+      else{
         let addTask = this.timetableResult[this.timetableResult.length-1]
         if(addTask.time>time){
           addTask.tasks.push({
@@ -299,8 +297,8 @@ getTimeTable(){
             startFormat: startFormat,
             finishFormat: finishFormat,
             dayStart: start.diff(moment(this.initDate), 'days'),
-            startTime: moment(data[i].detail.timestamp).format("HH[h]mm"),
-            endTime: moment(data[i].detail.timestamp).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
+            startTime: moment(start.toISOString()).format("HH[h]mm"),
+            endTime: moment(finish.toISOString()).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
             color: this.getRandomColor(),
             time: time,
             totalTime: data[i].time,
@@ -312,30 +310,18 @@ getTimeTable(){
             startFormat: addTask.startFormat,
             finishFormat: addTask.finishFormat,
             dayStart: addTask.dayStart,
-            startTime: addTask.startTime,
-            endTime: addTask.endTime,
+            startTime: moment(start.toISOString()).format("HH[h]mm"),
+            endTime: moment(finish.toISOString()).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
             color: addTask.color,
             time: addTask.time,
             totalTime: addTask.totalTime,
           })
-          addTask._id = data[i]._id
-          addTask.name = data[i].name,
-          addTask.startFormat = startFormat,
-          addTask.finishFormat = finishFormat,
-          addTask.dayStart = start.diff(moment(this.initDate), 'days'),
-          addTask.startTime = moment(data[i].detail.timestamp).format("HH[h]mm"),
-          addTask.endTime = moment(data[i].detail.timestamp).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
-          addTask.color = this.getRandomColor(),
-          addTask.time = time,
-          addTask.totalTime = data[i].time
         }
         this.timetableResult[this.timetableResult.length-1] = addTask
       }
       startFormat_last = startFormat
       DayStart_last = start.diff(moment(this.initDate), 'days')
     }
-    console.log(this.timetableResult)
-
   })
 }
 formatDateShort(date){

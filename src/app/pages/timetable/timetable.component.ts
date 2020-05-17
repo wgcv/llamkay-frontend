@@ -57,12 +57,13 @@ export class TimetableComponent implements OnInit {
       let startFormat_last, DayStart_last
       for (let i=0; i<data.length; i++){
         let start = moment(data[i].detail.timestamp)
+
         if(start.minutes()<15){
           start = start.set({minute:0,second:0,millisecond:0})
         }else if (start.minutes()<45){
           start = start.set({minute:30,second:0,millisecond:0})
         }else{
-          start = start.set({hour:start.hours()+1,minute:30,second:0,millisecond:0})
+          start = start.set({hour:start.hours()+1,minute:0,second:0,millisecond:0})
         }
 
         let time = Math.floor(data[i].detail.seconds/1800)
@@ -73,7 +74,6 @@ export class TimetableComponent implements OnInit {
           time = 1
         }
         let finish = moment(start).add("minutes", time*30)
-
         let startFormat = "time-"
         if(start.hours()<10){
           startFormat += '0'+start.hours()
@@ -106,15 +106,14 @@ export class TimetableComponent implements OnInit {
             startFormat: startFormat,
             finishFormat: finishFormat,
             dayStart: start.diff(moment(this.initDate.value), 'days'),
-            startTime: moment(data[i].detail.timestamp).format("HH[h]mm"),
-            endTime: moment(data[i].detail.timestamp).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
+            startTime: moment(start.toISOString()).format("HH[h]mm"),
+            endTime: moment(finish.toISOString()).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
             time: time,
             totalTime: data[i].time,
             color: this.getRandomColor(),
             tasks:[]
           })
         }else{
-
           let addTask = this.timetableResult[this.timetableResult.length-1]
           if(addTask.time>time){
             addTask.tasks.push({
@@ -123,8 +122,8 @@ export class TimetableComponent implements OnInit {
               startFormat: startFormat,
               finishFormat: finishFormat,
               dayStart: start.diff(moment(this.initDate.value), 'days'),
-              startTime: moment(data[i].detail.timestamp).format("HH[h]mm"),
-              endTime: moment(data[i].detail.timestamp).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
+              startTime: moment(start.toISOString()).format("HH[h]mm"),
+              endTime: moment(finish.toISOString()).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
               color: this.getRandomColor(),
               time: time,
               totalTime: data[i].time,
@@ -136,22 +135,12 @@ export class TimetableComponent implements OnInit {
               startFormat: addTask.startFormat,
               finishFormat: addTask.finishFormat,
               dayStart: addTask.dayStart,
-              startTime: addTask.startTime,
-              endTime: addTask.endTime,
+              startTime: moment(start.toISOString()).format("HH[h]mm"),
+              endTime: moment(finish.toISOString()).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
               color: addTask.color,
               time: addTask.time,
               totalTime: addTask.totalTime,
             })
-            addTask._id = data[i]._id
-            addTask.name = data[i].name,
-            addTask.startFormat = startFormat,
-            addTask.finishFormat = finishFormat,
-            addTask.dayStart = start.diff(moment(this.initDate.value), 'days'),
-            addTask.startTime = moment(data[i].detail.timestamp).format("HH[h]mm"),
-            addTask.endTime = moment(data[i].detail.timestamp).add("seconds", data[i].detail.seconds).format("HH[h]mm"),
-            addTask.color = this.getRandomColor(),
-            addTask.time = time,
-            addTask.totalTime = data[i].time
           }
           this.timetableResult[this.timetableResult.length-1] = addTask
         }
