@@ -129,6 +129,28 @@
       <a (click)="clickArchiveTasks()" [class.is-active]="!activateTasks" class="card-footer-item">Archivadas</a>
     </footer>
   </div>
+
+  <div class="card">
+    <header class="card-header">
+      <h2 class="title card-header-title">Actividades</h2>
+
+    </header>
+    <div class="card-content">
+      <div style="display: grid; padding: 1em;">
+
+      <ngx-charts-advanced-pie-chart
+          [results]="chartApp"
+          [animations]="chartAppAnimation"
+          [valueFormatting]= "chartAppValueFormating"
+          >
+          <ng-template #tooltipTemplate let-model="model">
+            {{model.name}} - Duración: {{model.value | formatSeconds}}
+          </ng-template>
+        </ngx-charts-advanced-pie-chart>
+        </div>
+    </div>
+
+  </div>
   <div class="card">
     <header class="card-header">
         <h2 class="title card-header-title">Calendario</h2>

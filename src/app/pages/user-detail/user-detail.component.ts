@@ -5,6 +5,7 @@ import { TasksService } from 'src/app/services/tasks/tasks.service';
 import { Router, ActivatedRoute} from '@angular/router';
 import { User } from '../../interfaces/user.interface';
 import { Task } from '../../interfaces/task.interfaces';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import * as moment from "moment/moment.js"
 
@@ -42,7 +43,10 @@ export class UserDetailComponent implements OnInit {
   hourList = ['0h00', '0h30', '1h00','1h30','2h00','2h30','3h00','3h30','4h00','4h30','5h00','5h30','6h00','6h30','7h00','7h30','8h00','8h30','9h00','9h30','10h00','10h30','11h00','11h30','12h00','12h30','13h30','14h00','14h30','15h00','15h30','16h00','16h30','17h00','17h30','18h00','18h30','19h00','19h30','20h00','20h30','21h00','21h30','22h00','22h30','23h00','23h30']
   sessionColors = ['#94d82e', '#3273dc', '#209cee', '#48c774', '#c35500', '#544D69', '#687f00']
   timetableResult:Array<any>
-
+  appResult:Array<any>
+  chartApp: Array<any>
+  chartAppAnimation: boolean = false;
+  chartAppValueFormating = (value)=>{console.log(value); return this.formatTime(value)}
   constructor(private userService: UsersService, private tasksService: TasksService, private router: Router, private matDialog: MatDialog, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -51,6 +55,14 @@ export class UserDetailComponent implements OnInit {
       this.userId = params.get("id")
       this.userService.getUser(this.userId).subscribe((data) => {
         this.user = data
+      })
+      this.tasksService.getApps(this.userId, this.initDate.toISOString(), this.finalDate.toISOString()).subscribe(data=> {
+        this.appResult = data
+        this.chartApp = []
+        for(let i=0; i<data.length; i++){
+          this.chartApp.push({name:data[i]._id, value:data[i].seconds})
+        }
+
       })
       this.getTimeTable()
     });
@@ -61,7 +73,7 @@ export class UserDetailComponent implements OnInit {
       this.callUpdateApi()
     },120000)
   }
- 
+
   callUpdateApi(){
     let now = (moment().set({hour:23,minute:59,second:59,millisecond:999}).utc()).toISOString()
     let before1day = (moment().set({hour:0,minute:0,second:0,millisecond:0}).utc()).toISOString()
@@ -228,7 +240,6 @@ makeAdmin(admin){
 
 getTimeTable(){
   this.tasksService.getTimetable(this.userId, this.initDate.toISOString(), this.finalDate.toISOString()).subscribe(data=> {
-  
     this.timetableResult = []
     let startFormat_last, DayStart_last
     for (let i=0; i<data.length; i++){

@@ -28,6 +28,10 @@ export class TasksService {
     return this.http.get<Pagination>(Host.url + '/all/archive/tasks/'+userId)
       .pipe(map(res => res));
   }
+  getApps(userId, from, until) {
+    return this.http.get<any>(Host.url + '/tasks/apps/' + userId + '?from=' + from + '&until=' + until)
+      .pipe(map(res => res));
+  }
   getTimetable(userId, from, until) {
     return this.http.get<any>(Host.url + '/tasks/timetable/' + userId + '?from=' + from + '&until=' + until)
       .pipe(map(res => res));

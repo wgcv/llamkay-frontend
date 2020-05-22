@@ -71,12 +71,46 @@
                 <tr *ngFor="let task of task?.detail" >
                     <td>{{formatDate(task?.timestamp)}}</td>
                     <td>{{formatTimeWithSeconds(task?.seconds)}}</td>
-
                 </tr>
     
             </tbody>
         </table>
     </div>
+</div>
+</div>
+<div class="card" style="margin: 1em 0;">
+    <header class="card-header">
+        <h2 class="title card-header-title">Detalle de aplicaciones</h2>
+      </header>
+    <div class="card-content">
+<div class="table-responsive">
+    <table class="table is-fullwidth">
+        <thead>
+            <tr>
+                <th>Aplicación</th>
+                <th>Titulo</th>
+                <th>Tiempo</th>
+                <th>Categoría</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let app of task?.app | slice:0:appLimit" >
+                <td>{{app?.name}}</td>
+                <td>{{ (app?.title.length>60)? (app?.title | slice:0:60)+'...':(app?.title) }}</td>
+                <td>{{app?.category | titlecase}}</td>
+                <td>{{formatTimeWithSeconds(app?.seconds)}}</td>
+                
+            </tr>
+
+        </tbody>
+        
+    </table>
+    <div class="has-text-centered is-primary" style="margin: 2em">
+        <button class="button is-primary" (click)="loadMoreApps()"  *ngIf="moreApp">Cargar más</button>
+    </div>
+
+</div>
 </div>
 </div>
     <div class="card" style="margin: 1em 0;">

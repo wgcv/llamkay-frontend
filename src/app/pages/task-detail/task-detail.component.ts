@@ -21,6 +21,8 @@ export class TaskDetailComponent implements OnInit {
   screenshots: Pagination
   moreScreenshots: boolean = true
   chartData: any
+  appLimit = 5
+  moreApp: boolean = true
   constructor(private tasksService: TasksService, private userService:UsersService, private router: Router, private activatedRoute: ActivatedRoute) { }
   @ViewChild('modal') modal: ElementRef;
   @ViewChild('modalImg') modalImg: ElementRef;
@@ -32,6 +34,7 @@ export class TaskDetailComponent implements OnInit {
       this.taskId = params.get("id")
       this.tasksService.getTask(this.taskId).subscribe((data) => {
         this.task = data
+        this.task.app.sort((a, b) => (a.seconds > b.seconds) ? -1 : 1)
         let tempData = []
 
         for (let i=0;i<this.task.detail.length;i++){
@@ -50,6 +53,7 @@ export class TaskDetailComponent implements OnInit {
           }] 
         Object.assign(this, this.chartData );
       })
+      
       this.tasksService.getScreenshots(this.taskId, 1).subscribe((data) => {
         this.screenshots = data
         if(!data.nextPage){
@@ -59,6 +63,7 @@ export class TaskDetailComponent implements OnInit {
       
   });
 }
+
 formatDate(date){
   if(date){
     let dateTxt = moment(date).format("dddd, D MMMM YYYY h:mm:ss A")
@@ -111,6 +116,18 @@ errorImg(errElement){
   let elementRef = errElement.target ;
   elementRef.parentElement.remove()
 }
+loadMoreApps(){
+  if(this.task.app.length > this.appLimit){
+    this.appLimit += 10;
+    if(this.task.app.length < this.appLimit){
+      this.moreApp = false;
+    }
+  }else{
+    this.moreApp = false;
+  }
+
+}
+
 loadMoreSceenshots(){
   this.tasksService.getScreenshots(this.taskId, this.screenshots.nextPage).subscribe((data) => {
     this.screenshots.docs.push(...data.docs)
