@@ -27,7 +27,7 @@
     "@material/snackbar": "^6.0.0",
     "@swimlane/ngx-charts": "^14.0.0",
     "bulma": "^0.8.2",
-    "moment": "^2.25.1",
+    "moment": "^2.29.2",
     "ngx-cookie-service": "^3.0.4",
     "ngx-paypal": "^6.1.0",
     "ngx-spinner": "^9.0.2",
